@@ -593,6 +593,11 @@
               <FilePath>..\Devices\Drivers\Src\Dri_LED.c</FilePath>
             </File>
             <File>
+              <FileName>Dri_SysTick.h.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Devices\HardWare\Src\Dri_SysTick.h.c</FilePath>
+            </File>
+            <File>
               <FileName>Dri_MPU6050.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Devices\Drivers\Src\Dri_MPU6050.c</FilePath>
@@ -647,11 +652,21 @@
               <FileType>5</FileType>
               <FilePath>..\Devices\Drivers\Inc\Dri_Buzzer.h</FilePath>
             </File>
+            <File>
+              <FileName>Dri_SysTick.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Devices\Drivers\Inc\Dri_SysTick.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>HardWare</GroupName>
           <Files>
+            <File>
+              <FileName>Har_SysTick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Devices\Drivers\Src\Har_SysTick.c</FilePath>
+            </File>
             <File>
               <FileName>Har_LED.h</FileName>
               <FileType>5</FileType>
@@ -731,6 +746,11 @@
               <FileName>Har_stm32_dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Devices\HardWare\Src\Har_stm32_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>Har_SysTick.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Devices\HardWare\Inc\Har_SysTick.h</FilePath>
             </File>
           </Files>
         </Group>

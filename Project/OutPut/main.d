@@ -69,6 +69,8 @@
 .\output\main.o: ..\Devices\HardWare\Inc\Har_LED.h
 .\output\main.o: ..\Devices\HardWare\Inc\Har_stm32_dma.h
 .\output\main.o: ..\Devices\HardWare\Inc\Har_Uart.h
+.\output\main.o: ..\Devices\Drivers\Inc\Dri_SysTick.h
+.\output\main.o: ..\Devices\HardWare\Inc\Har_SysTick.h
 .\output\main.o: ..\Devices\Drivers\Inc\Dri_Buzzer.h
 .\output\main.o: ..\Devices\HardWare\Inc\Har_Buzzer.h
 .\output\main.o: ..\Devices\Drivers\Inc\Dri_W25Q64.h

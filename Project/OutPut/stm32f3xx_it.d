@@ -69,6 +69,8 @@
 .\output\stm32f3xx_it.o: ..\USER\Inc\MyTypedef.h
 .\output\stm32f3xx_it.o: ..\Devices\HardWare\Inc\Har_stm32_dma.h
 .\output\stm32f3xx_it.o: ..\Devices\HardWare\Inc\Har_Uart.h
+.\output\stm32f3xx_it.o: ..\Devices\Drivers\Inc\Dri_SysTick.h
+.\output\stm32f3xx_it.o: ..\Devices\HardWare\Inc\Har_SysTick.h
 .\output\stm32f3xx_it.o: ..\Devices\Drivers\Inc\Dri_Buzzer.h
 .\output\stm32f3xx_it.o: ..\Devices\HardWare\Inc\Har_Buzzer.h
 .\output\stm32f3xx_it.o: ..\Devices\Drivers\Inc\Dri_W25Q64.h
