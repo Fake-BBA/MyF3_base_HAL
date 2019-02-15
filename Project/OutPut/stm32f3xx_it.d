@@ -76,5 +76,6 @@
 .\output\stm32f3xx_it.o: ..\Devices\Drivers\Inc\Dri_W25Q64.h
 .\output\stm32f3xx_it.o: ..\Devices\Drivers\Inc\Dri_MS5611.h
 .\output\stm32f3xx_it.o: ..\Devices\Drivers\Inc\Dri_MPU6050.h
+.\output\stm32f3xx_it.o: ..\Devices\HardWare\Inc\Har_I2C.h
 .\output\stm32f3xx_it.o: ..\Devices\Drivers\Inc\Dri_HMC5883L.h
 .\output\stm32f3xx_it.o: ..\USER\Inc\stm32f3xx_it.h

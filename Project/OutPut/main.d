@@ -76,4 +76,6 @@
 .\output\main.o: ..\Devices\Drivers\Inc\Dri_W25Q64.h
 .\output\main.o: ..\Devices\Drivers\Inc\Dri_MS5611.h
 .\output\main.o: ..\Devices\Drivers\Inc\Dri_MPU6050.h
+.\output\main.o: ..\Devices\HardWare\Inc\Har_I2C.h
 .\output\main.o: ..\Devices\Drivers\Inc\Dri_HMC5883L.h
+.\output\main.o: C:\software\keil5\ARM\ARMCC\Bin\..\include\string.h

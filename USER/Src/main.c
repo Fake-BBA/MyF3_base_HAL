@@ -1,8 +1,37 @@
 #include "stm32f3xx_hal.h"
 #include "MyConfiguration.h"
 #include "Devices.h"
+#include "string.h"
 
 void SystemClock_Config(void);
+
+void MX_DMA_Init(void) 
+{
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel2_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel2_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel2_IRQn);
+  /* DMA1_Channel3_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel3_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel3_IRQn);
+  /* DMA1_Channel4_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel4_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel4_IRQn);
+  /* DMA1_Channel5_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel5_IRQn);
+  /* DMA1_Channel6_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel6_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel6_IRQn);
+  /* DMA1_Channel7_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel7_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel7_IRQn);
+
+}
+
 int main(void)
 {
 	HAL_Init();				//初始化库
@@ -10,13 +39,15 @@ int main(void)
 	SysTick_Init();	//
 	Sys_LED_Init();
 	Buzzer_Init();
-	
+	MX_DMA_Init();
+	MX_I2C1_Init();
 	USART1_UART_Init(115200);
+	Init_MPU6050();
 	//USART3_UART_Init();
 	
 	struct TimerTemp t1;
 	ReSetTimerTemp(&t1);
-	
+	char sendBuff[100];
 	while (1)
 	{
 		
@@ -24,7 +55,10 @@ int main(void)
 		{
 			ReSetTimerTemp(&t1);
 			Sys_LED_Negative();
-			UART1_SendBytes("Hello World!",12);
+			Read_MPU6050();
+			
+			snprintf(sendBuff,100,"ACC_X:%d\tACC_Y:%d\tACC_Z:%d\r\n Temp:%f\r\n",ACC_X,ACC_Y,ACC_Z,MPU6050_TEMP);
+			UART1_SendBytes(sendBuff,strlen(sendBuff));
 			DMA_UART1_SendThread();
 			
 		}

@@ -752,6 +752,16 @@
               <FileType>5</FileType>
               <FilePath>..\Devices\HardWare\Inc\Har_SysTick.h</FilePath>
             </File>
+            <File>
+              <FileName>Har_I2C.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Devices\HardWare\Inc\Har_I2C.h</FilePath>
+            </File>
+            <File>
+              <FileName>Har_I2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Devices\HardWare\Src\Har_I2C.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
