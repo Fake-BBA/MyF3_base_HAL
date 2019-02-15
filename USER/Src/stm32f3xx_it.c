@@ -105,8 +105,8 @@ void DMA1_Channel4_IRQHandler(void)
 
 void DMA1_Channel5_IRQHandler(void)
 {
-	//HAL_DMA_IRQHandler(&hdma_usart1_rx);
-	HAL_UART_Transmit(&huart1,TxBuffer,4,15);
+	HAL_DMA_IRQHandler(&hdma_usart1_rx);
+	//HAL_UART_Transmit(&huart1,TxBuffer,4,15);
 }
 
 void DMA1_Channel6_IRQHandler(void)
@@ -131,8 +131,21 @@ void I2C1_ER_IRQHandler(void)
 
 void USART1_IRQHandler(void)
 {
-	//HAL_UART_Transmit(&huart1,TxBuffer,4,15);
 	HAL_UART_IRQHandler(&huart1);
+	if(USART1 == huart1.Instance)
+	{
+		//Buzzer_Negative();
+		if(__HAL_UART_GET_FLAG(&huart1,UART_FLAG_IDLE) != RESET)//idle标志被置位
+		{
+			uart1_RX_Buffer.stateFlag = RECV_COMPLETE;// 接受完成标志位
+			__HAL_UART_CLEAR_IDLEFLAG(&huart1);//清除标志位
+
+			HAL_UART_DMAStop(&huart1); //
+			//总计数减去未传输的数据个数，得到已经接收的数据个数
+			uart1_RX_Buffer.length =uart1_RX_Buffer.buffSize - __HAL_DMA_GET_COUNTER(&hdma_usart1_rx);
+		}
+		
+	}
 }
 
 void USART3_IRQHandler(void)
