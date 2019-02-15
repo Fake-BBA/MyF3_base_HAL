@@ -1,0 +1,7 @@
+--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ..\USER\Inc -I ..\Devices\Drivers\Inc -I ..\Devices\HardWare\Inc -I ..\System\Core\Inc -I ..\System\Dev\Inc -I ..\System\Hal_Lib\Inc
+-I.\RTE\_Target_1
+-IC:\software\keil5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include
+-IC:\software\keil5\ARM\CMSIS\Include
+-IC:\software\keil5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0
+-D__UVISION_VERSION="526" -DSTM32F303xC -DUSE_HAL_DRIVER -DSTM32F303xC
+-o .\output\dri_led.o --omf_browse .\output\dri_led.crf --depend .\output\dri_led.d --feedback ".\OutPut\MyF3.fed" "..\Devices\Drivers\Src\Dri_LED.c"
