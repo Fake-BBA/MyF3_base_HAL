@@ -7,8 +7,10 @@
 typedef unsigned char bool;
 typedef unsigned char BOOL;
 
-typedef unsigned char false;
-//typedef unsigned char FALSE;
+#define false 0
+#define true  1
+#define FALSE 0
+#define TRUE  1
 
 typedef unsigned char uint8;
 typedef unsigned short int uint16;

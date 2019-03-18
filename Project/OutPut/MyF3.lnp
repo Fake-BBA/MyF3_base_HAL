@@ -24,6 +24,7 @@
 ".\output\stm32f3xx_it.o"
 ".\output\stm32f3xx_hal_msp.o"
 ".\output\system_stm32f3xx.o"
+".\output\attitude.o"
 ".\output\startup_stm32f303xc.o"
 ".\output\dri_buzzer.o"
 ".\output\dri_hmc5883l.o"

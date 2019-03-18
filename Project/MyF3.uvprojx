@@ -537,6 +537,16 @@
               <FileType>1</FileType>
               <FilePath>..\USER\Src\system_stm32f3xx.c</FilePath>
             </File>
+            <File>
+              <FileName>Attitude.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\Inc\Attitude.h</FilePath>
+            </File>
+            <File>
+              <FileName>Attitude.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\Src\Attitude.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

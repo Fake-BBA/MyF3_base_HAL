@@ -2,6 +2,7 @@
 #include "MyConfiguration.h"
 #include "Devices.h"
 #include "string.h"
+#include "Attitude.h"
 
 void SystemClock_Config(void);
 
@@ -41,26 +42,39 @@ int main(void)
 	Buzzer_Init();
 	MX_DMA_Init();
 	MX_I2C1_Init();
-	USART1_UART_Init(115200);
+	USART1_UART_Init(1000000);
 	Init_MPU6050();
 	//USART3_UART_Init();
 	
 	struct TimerTemp t1;
 	ReSetTimerTemp(&t1);
 	char sendBuff[100];
+	uint32 t2;
+	
+	struct AccData acc;
+	struct GyroData gyro;
+	struct FlightState state;
 	while (1)
 	{
 		
-		if(WaitSysTime_UnBlocked(&t1,1000,UINT_MS))
+		if(WaitSysTime_UnBlocked(&t1,2,UINT_MS))
 		{
 			ReSetTimerTemp(&t1);
 			Sys_LED_Negative();
 			Read_MPU6050();
 			
-			snprintf(sendBuff,100,"ACC_X:%d\tACC_Y:%d\tACC_Z:%d\r\n Temp:%f\r\n",ACC_X,ACC_Y,ACC_Z,MPU6050_TEMP);
-			UART1_SendBytes(sendBuff,strlen(sendBuff));
-			DMA_UART1_SendThread();
+			acc.x=ACC_X;
+			acc.y=ACC_Y;
+			acc.z=ACC_Z;
 			
+			gyro.x=GYR_X;
+			gyro.y=GYR_Y;
+			gyro.z=GYR_Z;
+			
+			imuUpdate(acc,gyro,&state,2);
+			//snprintf(sendBuff,100,"ACC_X:%d\tACC_Y:%d\tACC_Z:%d\r\n Temp:%f\r\n",ACC_X,ACC_Y,ACC_Z,MPU6050_TEMP);
+			UART1_SendBytes(sendBuff,strlen(sendBuff));
+			DMA_UART1_SendThread();		
 		}
 		
 	}

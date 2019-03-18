@@ -28,12 +28,12 @@ void Init_MPU6050()
 uint8 Read_MPU6050()
 {
 	HAL_I2C_Mem_Read_DMA(&hi2c1,ADDR_MPU6050_Read,0x3B,I2C_MEMADD_SIZE_8BIT,MPU6050_Data,14);
-	uint16 tempture;
+	int16 tempture;
 	ACC_X = (((uint16_t)MPU6050_Data[0]) << 8) + MPU6050_Data[1];
 	ACC_Y = (((uint16_t)MPU6050_Data[2]) << 8) + MPU6050_Data[3];
 	ACC_Z = (((uint16_t)MPU6050_Data[4]) << 8) + MPU6050_Data[5];
 	tempture=(((uint16_t)MPU6050_Data[6]) << 8) + MPU6050_Data[7];
-	MPU6050_TEMP=36.53+((float)((int16)tempture)/340);
+	MPU6050_TEMP=36.53+(float)tempture/340;
 	GYR_X = (((uint16_t)MPU6050_Data[8]) << 8) + MPU6050_Data[9];
 	GYR_Y = (((uint16_t)MPU6050_Data[10]) << 8) + MPU6050_Data[11];
 	GYR_Z = (((uint16_t)MPU6050_Data[12]) << 8) + MPU6050_Data[13];
