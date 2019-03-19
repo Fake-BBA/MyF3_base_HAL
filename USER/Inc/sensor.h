@@ -38,10 +38,21 @@ struct Gyroscope{
     }z;
 };
 
-struct Sensor
-{
+struct Thermometer{
+    union Temm
+    {
+        uint8 H_L[2];
+        uint16 data;
+    };
+};
+struct MPU6050{
     struct Accelerometer acc;
     struct Gyroscope gyro; 
+    struct Thermometer thermometer;
+};
+struct Sensor
+{
+    struct MPU6050 mpu6050;
     
 };
 
