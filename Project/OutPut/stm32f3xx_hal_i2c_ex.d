@@ -6,14 +6,14 @@
 .\output\stm32f3xx_hal_i2c_ex.o: ..\System\Dev\Inc\stm32f3xx.h
 .\output\stm32f3xx_hal_i2c_ex.o: ..\System\Dev\Inc\stm32f303xc.h
 .\output\stm32f3xx_hal_i2c_ex.o: ..\System\Core\Inc\core_cm4.h
-.\output\stm32f3xx_hal_i2c_ex.o: C:\software\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\stm32f3xx_hal_i2c_ex.o: C:\software\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\output\stm32f3xx_hal_i2c_ex.o: ..\System\Core\Inc\core_cmInstr.h
 .\output\stm32f3xx_hal_i2c_ex.o: ..\System\Core\Inc\cmsis_armcc.h
 .\output\stm32f3xx_hal_i2c_ex.o: ..\System\Core\Inc\core_cmFunc.h
 .\output\stm32f3xx_hal_i2c_ex.o: ..\System\Core\Inc\core_cmSimd.h
 .\output\stm32f3xx_hal_i2c_ex.o: ..\USER\Inc\system_stm32f3xx.h
 .\output\stm32f3xx_hal_i2c_ex.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal.h
-.\output\stm32f3xx_hal_i2c_ex.o: C:\software\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\output\stm32f3xx_hal_i2c_ex.o: C:\software\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\output\stm32f3xx_hal_i2c_ex.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal_rcc_ex.h
 .\output\stm32f3xx_hal_i2c_ex.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal_gpio.h
 .\output\stm32f3xx_hal_i2c_ex.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal_gpio_ex.h

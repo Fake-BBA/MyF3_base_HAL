@@ -7,14 +7,14 @@
 .\output\dri_led.o: ..\System\Dev\Inc\stm32f3xx.h
 .\output\dri_led.o: ..\System\Dev\Inc\stm32f303xc.h
 .\output\dri_led.o: ..\System\Core\Inc\core_cm4.h
-.\output\dri_led.o: C:\software\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\dri_led.o: C:\software\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\output\dri_led.o: ..\System\Core\Inc\core_cmInstr.h
 .\output\dri_led.o: ..\System\Core\Inc\cmsis_armcc.h
 .\output\dri_led.o: ..\System\Core\Inc\core_cmFunc.h
 .\output\dri_led.o: ..\System\Core\Inc\core_cmSimd.h
 .\output\dri_led.o: ..\USER\Inc\system_stm32f3xx.h
 .\output\dri_led.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal.h
-.\output\dri_led.o: C:\software\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\output\dri_led.o: C:\software\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\output\dri_led.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal_rcc_ex.h
 .\output\dri_led.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal_gpio.h
 .\output\dri_led.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal_gpio_ex.h

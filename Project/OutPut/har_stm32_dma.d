@@ -7,14 +7,14 @@
 .\output\har_stm32_dma.o: ..\System\Dev\Inc\stm32f3xx.h
 .\output\har_stm32_dma.o: ..\System\Dev\Inc\stm32f303xc.h
 .\output\har_stm32_dma.o: ..\System\Core\Inc\core_cm4.h
-.\output\har_stm32_dma.o: C:\software\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\har_stm32_dma.o: C:\software\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\output\har_stm32_dma.o: ..\System\Core\Inc\core_cmInstr.h
 .\output\har_stm32_dma.o: ..\System\Core\Inc\cmsis_armcc.h
 .\output\har_stm32_dma.o: ..\System\Core\Inc\core_cmFunc.h
 .\output\har_stm32_dma.o: ..\System\Core\Inc\core_cmSimd.h
 .\output\har_stm32_dma.o: ..\USER\Inc\system_stm32f3xx.h
 .\output\har_stm32_dma.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal.h
-.\output\har_stm32_dma.o: C:\software\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+.\output\har_stm32_dma.o: C:\software\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\output\har_stm32_dma.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal_rcc_ex.h
 .\output\har_stm32_dma.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal_gpio.h
 .\output\har_stm32_dma.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal_gpio_ex.h

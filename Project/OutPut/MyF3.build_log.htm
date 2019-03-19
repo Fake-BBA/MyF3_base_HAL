@@ -5,11 +5,11 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¶ÃVision V5.26.2.0
 Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: BB A, ZSC, LIC=HF8TG-VE355-ZCAJY-IURX2-DLA2F-NBCI8
+License Information: BBA YuCho, ZSC, LIC=V85FW-QNZ97-17LRR-KBEC1-HHEEK-T08BS
  
 Tool Versions:
 Toolchain:       MDK-ARM Professional  Version: 5.26.2.0
-Toolchain Path:  C:\software\keil5\ARM\ARMCC\Bin
+Toolchain Path:  C:\software\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 6 (build 750)
 Assembler:       Armasm.exe V5.06 update 6 (build 750)
 Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
@@ -21,23 +21,261 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.5.0
 Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
-D:\Àƒ÷·∑…––∆˜\≥Ã–Ú\Mine\Project\MyF3.uvprojx
-Project File Date:  03/03/2019
+D:\MyProgram\STM32\MyF3_base_HAL\Project\MyF3.uvprojx
+Project File Date:  03/19/2019
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\software\keil5\ARM\ARMCC\Bin'
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\software\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling Attitude.c...
+compiling stm32f3xx_hal_adc.c...
+compiling stm32f3xx_hal.c...
+compiling stm32f3xx_hal_gpio.c...
+compiling stm32f3xx_hal_cortex.c...
+compiling stm32f3xx_hal_dma.c...
+compiling stm32f3xx_hal_adc_ex.c...
+compiling stm32f3xx_hal_flash_ex.c...
+compiling stm32f3xx_hal_flash.c...
+compiling stm32f3xx_hal_i2c.c...
+compiling stm32f3xx_hal_i2c_ex.c...
+compiling stm32f3xx_hal_pwr.c...
+compiling stm32f3xx_hal_pwr_ex.c...
+compiling stm32f3xx_hal_rcc_ex.c...
+compiling stm32f3xx_hal_rcc.c...
+compiling stm32f3xx_hal_spi.c...
+compiling stm32f3xx_hal_spi_ex.c...
+compiling stm32f3xx_hal_tim.c...
+compiling stm32f3xx_hal_tim_ex.c...
+compiling stm32f3xx_hal_uart.c...
+compiling stm32f3xx_hal_uart_ex.c...
+compiling main.c...
 ..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\USER\Inc\MyConfiguration.h(7): warning:  #1-D: last line of file ends without a newline
   #endif
-..\USER\Inc\Attitude.h(33): warning:  #1-D: last line of file ends without a newline
+..\Devices\HardWare\Inc\Har_LED.h(7): warning:  #1295-D: Deprecated declaration Sys_LED_PinInit - give arg types
+  void Sys_LED_PinInit();
+..\Devices\HardWare\Inc\Har_LED.h(8): warning:  #1295-D: Deprecated declaration Sys_LED_PinSet - give arg types
+  void Sys_LED_PinSet();
+..\Devices\HardWare\Inc\Har_LED.h(9): warning:  #1295-D: Deprecated declaration Sys_LED_PinReSet - give arg types
+  void Sys_LED_PinReSet();
+..\Devices\HardWare\Inc\Har_LED.h(10): warning:  #1295-D: Deprecated declaration Sys_LED_PinNegative - give arg types
+  void Sys_LED_PinNegative();	//ÂºïËÑöÁîµÂπ≥ÂèñÂèç
+..\Devices\HardWare\Inc\Har_LED.h(11): warning:  #1295-D: Deprecated declaration Sys_LED_PinState - give arg types
+  uint8 Sys_LED_PinState();
+..\Devices\HardWare\Inc\Har_LED.h(12): warning:  #1-D: last line of file ends without a newline
   #endif
-..\USER\Src\Attitude.c: 3 warnings, 0 errors
-linking...
-Program Size: Code=18206 RO-data=658 RW-data=40 ZI-data=4400  
-".\OutPut\MyF3.axf" - 0 Error(s), 3 Warning(s).
+..\Devices\Drivers\Inc\Dri_LED.h(6): warning:  #1295-D: Deprecated declaration Sys_LED_Init - give arg types
+  void Sys_LED_Init();
+..\Devices\Drivers\Inc\Dri_LED.h(7): warning:  #1295-D: Deprecated declaration Sys_LED_ON - give arg types
+  void Sys_LED_ON();
+..\Devices\Drivers\Inc\Dri_LED.h(8): warning:  #1295-D: Deprecated declaration Sys_LED_OFF - give arg types
+  void Sys_LED_OFF();	
+..\Devices\Drivers\Inc\Dri_LED.h(9): warning:  #1295-D: Deprecated declaration Sys_LED_Negative - give arg types
+  void Sys_LED_Negative();
+..\Devices\Drivers\Inc\Dri_LED.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_stm32_dma.h(7): warning:  #1295-D: Deprecated declaration STM32_DMA_Init - give arg types
+  void STM32_DMA_Init();
+..\Devices\HardWare\Inc\Har_stm32_dma.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_Uart.h(41): warning:  #1295-D: Deprecated declaration DMA_UART1_SendThread - give arg types
+  void DMA_UART1_SendThread();
+..\Devices\HardWare\Inc\Har_Uart.h(42): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\Devices.h(8): error:  #5: cannot open source input file "Dri_SysTick.h": No such file or directory
+  #include "Dri_SysTick.h"
+..\USER\Src\main.c: 17 warnings, 1 error
+compiling stm32f3xx_it.c...
+..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\MyConfiguration.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_LED.h(7): warning:  #1295-D: Deprecated declaration Sys_LED_PinInit - give arg types
+  void Sys_LED_PinInit();
+..\Devices\HardWare\Inc\Har_LED.h(8): warning:  #1295-D: Deprecated declaration Sys_LED_PinSet - give arg types
+  void Sys_LED_PinSet();
+..\Devices\HardWare\Inc\Har_LED.h(9): warning:  #1295-D: Deprecated declaration Sys_LED_PinReSet - give arg types
+  void Sys_LED_PinReSet();
+..\Devices\HardWare\Inc\Har_LED.h(10): warning:  #1295-D: Deprecated declaration Sys_LED_PinNegative - give arg types
+  void Sys_LED_PinNegative();	//ÂºïËÑöÁîµÂπ≥ÂèñÂèç
+..\Devices\HardWare\Inc\Har_LED.h(11): warning:  #1295-D: Deprecated declaration Sys_LED_PinState - give arg types
+  uint8 Sys_LED_PinState();
+..\Devices\HardWare\Inc\Har_LED.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\Drivers\Inc\Dri_LED.h(6): warning:  #1295-D: Deprecated declaration Sys_LED_Init - give arg types
+  void Sys_LED_Init();
+..\Devices\Drivers\Inc\Dri_LED.h(7): warning:  #1295-D: Deprecated declaration Sys_LED_ON - give arg types
+  void Sys_LED_ON();
+..\Devices\Drivers\Inc\Dri_LED.h(8): warning:  #1295-D: Deprecated declaration Sys_LED_OFF - give arg types
+  void Sys_LED_OFF();	
+..\Devices\Drivers\Inc\Dri_LED.h(9): warning:  #1295-D: Deprecated declaration Sys_LED_Negative - give arg types
+  void Sys_LED_Negative();
+..\Devices\Drivers\Inc\Dri_LED.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_stm32_dma.h(7): warning:  #1295-D: Deprecated declaration STM32_DMA_Init - give arg types
+  void STM32_DMA_Init();
+..\Devices\HardWare\Inc\Har_stm32_dma.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_Uart.h(41): warning:  #1295-D: Deprecated declaration DMA_UART1_SendThread - give arg types
+  void DMA_UART1_SendThread();
+..\Devices\HardWare\Inc\Har_Uart.h(42): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\Devices.h(8): error:  #5: cannot open source input file "Dri_SysTick.h": No such file or directory
+  #include "Dri_SysTick.h"
+..\USER\Src\stm32f3xx_it.c: 17 warnings, 1 error
+compiling stm32f3xx_hal_usart.c...
+compiling Attitude.c...
+"no source": Error:  #5: cannot open source input file "..\USER\Src\Attitude.c": No such file or directory
+..\USER\Src\Attitude.c: 0 warnings, 1 error
+assembling startup_stm32f303xc.s...
+compiling stm32f3xx_hal_msp.c...
+compiling Dri_HMC5883L.c...
+compiling system_stm32f3xx.c...
+compiling Dri_SysTick.h.c...
+"no source": Error:  #5: cannot open source input file "..\Devices\HardWare\Src\Dri_SysTick.h.c": No such file or directory
+..\Devices\HardWare\Src\Dri_SysTick.h.c: 0 warnings, 1 error
+compiling Dri_Buzzer.c...
+..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\MyConfiguration.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_Buzzer.h(13): warning:  #1295-D: Deprecated declaration Buzzer_PinInit - give arg types
+  void Buzzer_PinInit();
+..\Devices\HardWare\Inc\Har_Buzzer.h(14): warning:  #1295-D: Deprecated declaration Buzzer_PinSet - give arg types
+  void Buzzer_PinSet();
+..\Devices\HardWare\Inc\Har_Buzzer.h(15): warning:  #1295-D: Deprecated declaration Buzzer_PinReSet - give arg types
+  void Buzzer_PinReSet();
+..\Devices\HardWare\Inc\Har_Buzzer.h(16): warning:  #1295-D: Deprecated declaration Buzzer_PinNegative - give arg types
+  void Buzzer_PinNegative();
+..\Devices\HardWare\Inc\Har_Buzzer.h(17): warning:  #1295-D: Deprecated declaration Buzzer_PinState - give arg types
+  uint8 Buzzer_PinState();
+..\Devices\HardWare\Inc\Har_Buzzer.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\Drivers\Inc\Dri_Buzzer.h(6): warning:  #1295-D: Deprecated declaration Buzzer_Init - give arg types
+  void Buzzer_Init();
+..\Devices\Drivers\Inc\Dri_Buzzer.h(7): warning:  #1295-D: Deprecated declaration Buzzer_ON - give arg types
+  void Buzzer_ON();
+..\Devices\Drivers\Inc\Dri_Buzzer.h(8): warning:  #1295-D: Deprecated declaration Buzzer_OFF - give arg types
+  void Buzzer_OFF();	
+..\Devices\Drivers\Inc\Dri_Buzzer.h(9): warning:  #1295-D: Deprecated declaration Buzzer_Negative - give arg types
+  void Buzzer_Negative();
+..\Devices\Drivers\Inc\Dri_Buzzer.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\Devices\Drivers\Src\Dri_Buzzer.c(26): warning:  #1-D: last line of file ends without a newline
+  }
+..\Devices\Drivers\Src\Dri_Buzzer.c: 14 warnings, 0 errors
+compiling Dri_MS5611.c...
+compiling Dri_Uart.c...
+compiling Dri_W25Q64.c...
+compiling Har_SysTick.c...
+"no source": Error:  #5: cannot open source input file "..\Devices\Drivers\Src\Har_SysTick.c": No such file or directory
+..\Devices\Drivers\Src\Har_SysTick.c: 0 warnings, 1 error
+compiling Dri_MPU6050.c...
+..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\MyConfiguration.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\Drivers\Inc\Dri_MPU6050.h(6): error:  #5: cannot open source input file "Har_I2C.h": No such file or directory
+  #include "Har_I2C.h"
+..\Devices\Drivers\Src\Dri_MPU6050.c: 2 warnings, 1 error
+compiling Dri_LED.c...
+..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\MyConfiguration.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_LED.h(7): warning:  #1295-D: Deprecated declaration Sys_LED_PinInit - give arg types
+  void Sys_LED_PinInit();
+..\Devices\HardWare\Inc\Har_LED.h(8): warning:  #1295-D: Deprecated declaration Sys_LED_PinSet - give arg types
+  void Sys_LED_PinSet();
+..\Devices\HardWare\Inc\Har_LED.h(9): warning:  #1295-D: Deprecated declaration Sys_LED_PinReSet - give arg types
+  void Sys_LED_PinReSet();
+..\Devices\HardWare\Inc\Har_LED.h(10): warning:  #1295-D: Deprecated declaration Sys_LED_PinNegative - give arg types
+  void Sys_LED_PinNegative();	//ÂºïËÑöÁîµÂπ≥ÂèñÂèç
+..\Devices\HardWare\Inc\Har_LED.h(11): warning:  #1295-D: Deprecated declaration Sys_LED_PinState - give arg types
+  uint8 Sys_LED_PinState();
+..\Devices\HardWare\Inc\Har_LED.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\Drivers\Src\Dri_LED.c: 8 warnings, 0 errors
+compiling Har_HMC5883L.c...
+compiling Har_MPU6050.c...
+compiling Har_MS5611.c...
+compiling Har_LED.c...
+..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\MyConfiguration.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_LED.h(7): warning:  #1295-D: Deprecated declaration Sys_LED_PinInit - give arg types
+  void Sys_LED_PinInit();
+..\Devices\HardWare\Inc\Har_LED.h(8): warning:  #1295-D: Deprecated declaration Sys_LED_PinSet - give arg types
+  void Sys_LED_PinSet();
+..\Devices\HardWare\Inc\Har_LED.h(9): warning:  #1295-D: Deprecated declaration Sys_LED_PinReSet - give arg types
+  void Sys_LED_PinReSet();
+..\Devices\HardWare\Inc\Har_LED.h(10): warning:  #1295-D: Deprecated declaration Sys_LED_PinNegative - give arg types
+  void Sys_LED_PinNegative();	//ÂºïËÑöÁîµÂπ≥ÂèñÂèç
+..\Devices\HardWare\Inc\Har_LED.h(11): warning:  #1295-D: Deprecated declaration Sys_LED_PinState - give arg types
+  uint8 Sys_LED_PinState();
+..\Devices\HardWare\Inc\Har_LED.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Src\Har_LED.c(39): warning:  #188-D: enumerated type mixed with another type
+  		(1-HAL_GPIO_ReadPin(GPIOB,GPIO_PIN_3)));
+..\Devices\HardWare\Src\Har_LED.c(49): warning:  #1-D: last line of file ends without a newline
+  }
+..\Devices\HardWare\Src\Har_LED.c: 10 warnings, 0 errors
+compiling Har_W25Q64.c...
+compiling Har_Buzzer.c...
+..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\MyConfiguration.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_Buzzer.h(13): warning:  #1295-D: Deprecated declaration Buzzer_PinInit - give arg types
+  void Buzzer_PinInit();
+..\Devices\HardWare\Inc\Har_Buzzer.h(14): warning:  #1295-D: Deprecated declaration Buzzer_PinSet - give arg types
+  void Buzzer_PinSet();
+..\Devices\HardWare\Inc\Har_Buzzer.h(15): warning:  #1295-D: Deprecated declaration Buzzer_PinReSet - give arg types
+  void Buzzer_PinReSet();
+..\Devices\HardWare\Inc\Har_Buzzer.h(16): warning:  #1295-D: Deprecated declaration Buzzer_PinNegative - give arg types
+  void Buzzer_PinNegative();
+..\Devices\HardWare\Inc\Har_Buzzer.h(17): warning:  #1295-D: Deprecated declaration Buzzer_PinState - give arg types
+  uint8 Buzzer_PinState();
+..\Devices\HardWare\Inc\Har_Buzzer.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Src\Har_Buzzer.c(38): warning:  #188-D: enumerated type mixed with another type
+  		(1-HAL_GPIO_ReadPin(GPIOC,GPIO_PIN_15)));
+..\Devices\HardWare\Src\Har_Buzzer.c(45): warning:  #1-D: last line of file ends without a newline
+  }
+..\Devices\HardWare\Src\Har_Buzzer.c: 10 warnings, 0 errors
+compiling Har_I2C.c...
+"no source": Error:  #5: cannot open source input file "..\Devices\HardWare\Src\Har_I2C.c": No such file or directory
+..\Devices\HardWare\Src\Har_I2C.c: 0 warnings, 1 error
+compiling Har_Uart.c...
+..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\MyConfiguration.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_Uart.h(41): warning:  #1295-D: Deprecated declaration DMA_UART1_SendThread - give arg types
+  void DMA_UART1_SendThread();
+..\Devices\HardWare\Inc\Har_Uart.h(42): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Src\Har_Uart.c(166): warning:  #223-D: function "memcpy" declared implicitly
+  	memcpy(uart1_TX_Buffer.buffer+uart1_TX_Buffer.length,p_bytes,len);
+..\Devices\HardWare\Src\Har_Uart.c(168): warning:  #940-D: missing return statement at end of non-void function "UART1_SendBytes" 
+  }
+..\Devices\HardWare\Src\Har_Uart.c(208): warning:  #223-D: function "memcpy" declared implicitly
+  		memcpy(Data,uart1_RX_Buffer.buffer,len);
+..\Devices\HardWare\Src\Har_Uart.c: 7 warnings, 0 errors
+compiling Har_stm32_dma.c...
+..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\MyConfiguration.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_stm32_dma.h(7): warning:  #1295-D: Deprecated declaration STM32_DMA_Init - give arg types
+  void STM32_DMA_Init();
+..\Devices\HardWare\Inc\Har_stm32_dma.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Src\Har_stm32_dma.c(32): warning:  #1-D: last line of file ends without a newline
+  }
+..\Devices\HardWare\Src\Har_stm32_dma.c: 5 warnings, 0 errors
+".\OutPut\MyF3.axf" - 7 Error(s), 90 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -48,10 +286,11 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_Target_1
-  C:\software\keil5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include
+  C:\software\Keil_v5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:05
+Target not created.
+Build Time Elapsed:  00:01:04
 </pre>
 </body>
 </html>
