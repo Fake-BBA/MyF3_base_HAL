@@ -1,5 +1,6 @@
 #include "Attitude.h"
 #include <math.h>
+#include "sensor.h"
 
 float Kp = 0.4f;		/*比例增益*/
 float Ki = 0.001f;		/*积分增益*/
@@ -15,11 +16,12 @@ static float q3 = 0.0f;
 static float baseZacc = 1.0;		/*静态Z轴加速度*/
 static bool isCalibrated = false;
 
-
+struct FlightState flightState;
+	
 static float invSqrt(float x);	/*快速开平方求倒*/
 
 //读取到MPU6050的单位是度
-void imuUpdate(struct AccData acc,struct GyroData gyro,struct FlightState *state, float dt)	/*数据融合 互补滤波*/
+void imuUpdate(float dt)	/*数据融合 互补滤波*/
 {
 	float normalise;
 	float ex, ey, ez;
@@ -27,7 +29,18 @@ void imuUpdate(struct AccData acc,struct GyroData gyro,struct FlightState *state
 	static float R11,R21;		/*矩阵(1,1),(2,1)项*/
 	static float vecxZ, vecyZ, veczZ;	/*机体坐标系下的Z方向向量*/
 	float halfT =0.5f * dt;
-	struct AccData tempacc =acc;
+	
+	struct AccData acc;
+	struct GyroData gyro;
+	acc.x=sensor.mpu6050.acc.axisTFloat_G.axisTF.x;
+	acc.y=sensor.mpu6050.acc.axisTFloat_G.axisTF.y;
+	acc.z=sensor.mpu6050.acc.axisTFloat_G.axisTF.z;
+	
+	gyro.x=sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.x;
+	gyro.y=sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.y;
+	gyro.z=sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.z;
+	
+	struct AccData tempacc=acc; 
 
 	gyro.x = gyro.x * DEG2RAD;	/* 度转弧度 */
 	gyro.y = gyro.y * DEG2RAD;
@@ -91,16 +104,16 @@ void imuUpdate(struct AccData acc,struct GyroData gyro,struct FlightState *state
 	if (vecxZ<-1) vecxZ=-1;
 	
 	/*计算roll pitch yaw 欧拉角*/
-	state->attitude.pitch = -asinf(vecxZ) * RAD2DEG; 		//弧度转度
-	state->attitude.roll = atan2f(vecyZ, veczZ) * RAD2DEG;	//弧度转度
-	state->attitude.yaw = atan2f(R21, R11) * RAD2DEG;		//弧度转度
+	flightState.attitude.pitch = -asinf(vecxZ) * RAD2DEG; 		//弧度转度
+	flightState.attitude.roll = atan2f(vecyZ, veczZ) * RAD2DEG;	//弧度转度
+	flightState.attitude.yaw = atan2f(R21, R11) * RAD2DEG;		//弧度转度
 	
 	if (!isCalibrated)	/*校准*/
 	{
 		baseZacc = tempacc.x* vecxZ + tempacc.y * vecyZ + tempacc.z * veczZ;
 		isCalibrated = true;
 	}
-	state->acc.z= tempacc.x* vecxZ + tempacc.y * vecyZ + tempacc.z * veczZ - baseZacc;	/*Z轴加速度(去除重力加速度)*/
+	flightState.acc.z= tempacc.x* vecxZ + tempacc.y * vecyZ + tempacc.z * veczZ - baseZacc;	/*Z轴加速度(去除重力加速度)*/
 }
 
 // Fast inverse square-root

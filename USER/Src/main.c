@@ -68,26 +68,46 @@ int main(void)
 			if(++times1>=2)
 			{
 				SensorThread();	//传感器数据读取与处理
+				imuUpdate(1.0f/(1000/2));	//2ms执行一次
 				times1=0;
 			}
 			
-			//imuUpdate(acc,gyro,&state,2);
+			
+			
 			//if(WaitSysTime_UnBlocked(&t2,100,UINT_MS))
 			if(++times2>=100)
 			{
 				times2=0;
 				ReSetTimerTemp(&t2);
 				Sys_LED_Negative();
-				snprintf(sendBuff,100,"ACC_X:%f\t ACC_Y:%f\t ACC_Z:%f\r\n\
-				GYRO_X:%f\t GYRO_Y:%f\t GYRO_Z:%f\r\n Temp:%f\r\n",
-				sensor.mpu6050.acc.axisTFloat_G.axisTF.x,
-				sensor.mpu6050.acc.axisTFloat_G.axisTF.y,
-				sensor.mpu6050.acc.axisTFloat_G.axisTF.z,
-				sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.x,
-				sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.y,
-				sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.z,
-				36.53+(float)sensor.mpu6050.thermometer.Temp.data/340);
+//				snprintf(sendBuff,100,"ACC_X:%d\t ACC_Y:%d\t ACC_Z:%d\r\n\
+//				GYRO_X:%d\t GYRO_Y:%d\t GYRO_Z:%d\r\n Temp:%f\r\n",
+//				sensor.mpu6050.acc.x.data,
+//				sensor.mpu6050.acc.y.data,
+//				sensor.mpu6050.acc.z.data,
+//				sensor.mpu6050.gyro.x.data,
+//				sensor.mpu6050.gyro.y.data,
+//				sensor.mpu6050.gyro.z.data,
+//				36.53+(float)sensor.mpu6050.thermometer.Temp.data/340);
+//				UART1_SendBytes(sendBuff,strlen(sendBuff));
+				
+//				snprintf(sendBuff,100,"ACC_X:%f\t ACC_Y:%f\t ACC_Z:%f\r\n\
+//				GYRO_X:%f\t GYRO_Y:%f\t GYRO_Z:%f\r\n Temp:%f\r\n",
+//				sensor.mpu6050.acc.axisTFloat_G.axisTF.x,
+//				sensor.mpu6050.acc.axisTFloat_G.axisTF.y,
+//				sensor.mpu6050.acc.axisTFloat_G.axisTF.z,
+//				sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.x,
+//				sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.y,
+//				sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.z,
+//				36.53+(float)sensor.mpu6050.thermometer.Temp.data/340);
+//				UART1_SendBytes(sendBuff,strlen(sendBuff));
+				
+				snprintf(sendBuff,100,"Pitch:%f\t Roll:%f\t Yaw:%f\r\n",
+				flightState.attitude.pitch,
+				flightState.attitude.roll,
+				flightState.attitude.yaw);
 				UART1_SendBytes(sendBuff,strlen(sendBuff));
+				
 				DMA_UART1_SendThread();		
 			}
 		}
