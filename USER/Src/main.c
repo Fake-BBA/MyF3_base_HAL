@@ -59,7 +59,7 @@ int main(void)
 		{
 			ReSetTimerTemp(&t1);
 			Sys_LED_Negative();
-			Read_MPU6050();
+			
 			
 
 			//imuUpdate(acc,gyro,&state,2);
@@ -72,8 +72,8 @@ int main(void)
 			sensor.mpu6050.gyro.y.data,
 			sensor.mpu6050.gyro.z.data,
 			36.53+(float)sensor.mpu6050.thermometer.Temp.data/340);
-			UART1_SendBytes(sendBuff,strlen(sendBuff));
-			DMA_UART1_SendThread();		
+			//UART1_SendBytes(sendBuff,strlen(sendBuff));
+			//DMA_UART1_SendThread();		
 		}
 		
 	}

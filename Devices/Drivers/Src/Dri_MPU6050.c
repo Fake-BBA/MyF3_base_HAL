@@ -1,24 +1,31 @@
 #include "Dri_MPU6050.h"
 #include "sensor.h"
 
-uint8_t MPU6050_Init1[3] = {0x00,0x01,0x00};
-uint8_t MPU6050_Init2[2] = {0x80,0x00};
-uint8_t MPU6050_Init3[1] = {0x00};
-uint8_t MPU6050_Init4[4] = {0x13,0x04,0x18,0x08};
+uint8_t MPU6050_Init1[3] = {0x00, //0x6A 采用IIC接口
+							0x01,	//0x6B 以陀螺仪X轴作为时钟，唤醒MPU6050，启用温度传感器
+							0x00};	//0x6C 
+uint8_t MPU6050_Init2[2] = {0x80,	//0x37 表示低电平为中断的有效信号
+							0x00};	//0x38	禁止了所有中断源
+uint8_t MPU6050_Init3[1] = {0x00};	//0x23 表示加速度计，陀螺仪、温度计等的值都不写进FIFO
+uint8_t MPU6050_Init4[4] = {0x13,	//0x19 表示陀螺仪采样率 设置采样速率: 1000 / (1 + 0x13) = 50Hz,设置采样速率: 1000 / (1 + 0) = 1000Hz
+							0x02,	//0x1A 设置低通滤波为98HZ
+							0x18,	//0x1B 陀螺仪不自检，并且量程为 2000 °/s
+							0x18};	//0x1C 加速度计不自检，并且量程为16g
 
 uint8_t MPU6050_Data[14];																							//例程为了兼顾气压计（AD时间至少20ms），系统频率定为10Hz
-uint8_t Read_OK = 0;
-int16_t ACC_X;
-int16_t ACC_Y;
-int16_t ACC_Z;
-int16_t GYR_X;
-int16_t GYR_Y;
-int16_t GYR_Z;
-float MPU6050_TEMP;
 
 
 void Init_MPU6050()
 {
+	/*
+	*@param  DevAddress Target device address: The device 7 bits address value
+	*         in datasheet must be shift at right before call interface@param  MemAddress Internal memory address
+	* @param  MemAddSize Size of internal memory address 目标器件内部的大小，即起始地址
+	* @param  pData Pointer to data buffer
+	* @param  Size Amount of data to be sent
+	* @param  Timeout Timeout duration
+	* @retval HAL status
+	*/
 	HAL_I2C_Mem_Write(&hi2c1,ADDR_MPU6050_Write,0x6A,I2C_MEMADD_SIZE_8BIT,MPU6050_Init1,3,100);
 	HAL_I2C_Mem_Write(&hi2c1,ADDR_MPU6050_Write,0x37,I2C_MEMADD_SIZE_8BIT,MPU6050_Init2,2,100);
 	HAL_I2C_Mem_Write(&hi2c1,ADDR_MPU6050_Write,0x23,I2C_MEMADD_SIZE_8BIT,MPU6050_Init3,1,100);	

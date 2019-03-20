@@ -27,14 +27,50 @@ Project File Date:  03/20/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\software\keil5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling Attitude.c...
+compiling sensor.c...
 ..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\sensor.h(51): warning:  #1295-D: Deprecated declaration SensorInit - give arg types
+  uint8 SensorInit();
+..\USER\Inc\sensor.h(52): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\USER\Inc\MyConfiguration.h(7): warning:  #1-D: last line of file ends without a newline
   #endif
-..\USER\Inc\Attitude.h(33): warning:  #1-D: last line of file ends without a newline
+..\Devices\HardWare\Inc\Har_I2C.h(9): warning:  #1-D: last line of file ends without a newline
   #endif
-..\USER\Src\Attitude.c: 3 warnings, 0 errors
+..\Devices\Drivers\Inc\Dri_MPU6050.h(20): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Src\sensor.c(29): error:  #20: identifier "Axis3f" is undefined
+  static bool processGyroBias(int16_t gx, int16_t gy, int16_t gz, Axis3f *gyroBiasOut)
+..\USER\Src\sensor.c(31): warning:  #223-D: function "sensorsAddBiasValue" declared implicitly
+  	sensorsAddBiasValue(&gyroBiasRunning, gx, gy, gz);
+..\USER\Src\sensor.c(31): error:  #20: identifier "gyroBiasRunning" is undefined
+  	sensorsAddBiasValue(&gyroBiasRunning, gx, gy, gz);
+..\USER\Src\sensor.c(35): warning:  #223-D: function "sensorsFindBiasValue" declared implicitly
+  		sensorsFindBiasValue(&gyroBiasRunning);
+..\USER\Src\sensor.c(38): warning:  #223-D: function "ledseqRun" declared implicitly
+  			ledseqRun(SYS_LED, seq_calibrated);
+..\USER\Src\sensor.c(38): error:  #20: identifier "SYS_LED" is undefined
+  			ledseqRun(SYS_LED, seq_calibrated);
+..\USER\Src\sensor.c(38): error:  #20: identifier "seq_calibrated" is undefined
+  			ledseqRun(SYS_LED, seq_calibrated);
+..\USER\Src\sensor.c(60): error:  #20: identifier "gyroBias" is undefined
+  	gyroBiasFound = processGyroBias(gx, gy, gz, &gyroBias);	//计算陀螺方差
+..\USER\Src\sensor.c(66): error:  #20: identifier "sensors" is undefined
+  	sensors.gyro.x = -(gx - gyroBias.x) * SENSORS_DEG_PER_LSB_CFG;	/*单位 °/s */
+..\USER\Src\sensor.c(66): error:  #20: identifier "SENSORS_DEG_PER_LSB_CFG" is undefined
+  	sensors.gyro.x = -(gx - gyroBias.x) * SENSORS_DEG_PER_LSB_CFG;	/*单位 °/s */
+..\USER\Src\sensor.c(69): warning:  #223-D: function "applyAxis3fLpf" declared implicitly
+  	applyAxis3fLpf((lpf2pData*)(&gyroLpf), &sensors.gyro);
+..\USER\Src\sensor.c(71): error:  #20: identifier "SENSORS_G_PER_LSB_CFG" is undefined
+  	sensors.acc.x = -(ax) * SENSORS_G_PER_LSB_CFG * accScale;	/*单位 g(9.8m/s^2)*/
+..\USER\Src\sensor.c(71): error:  #20: identifier "accScale" is undefined
+  	sensors.acc.x = -(ax) * SENSORS_G_PER_LSB_CFG * accScale;	/*单位 g(9.8m/s^2)*/
+..\USER\Src\sensor.c(79): warning:  #223-D: function "Read_MPU6050" declared implicitly
+  	Read_MPU6050();	//读取MPU6050数据到sensor结构体
+..\USER\Src\sensor.c(85): warning:  #1-D: last line of file ends without a newline
+  }
+..\USER\Src\sensor.c: 12 warnings, 9 errors
 compiling main.c...
 ..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -108,21 +144,17 @@ compiling main.c...
   #endif
 ..\USER\Inc\Attitude.h(33): warning:  #1-D: last line of file ends without a newline
   #endif
-..\USER\Inc\sensor.h(50): warning:  #1-D: last line of file ends without a newline
+..\USER\Inc\sensor.h(51): warning:  #1295-D: Deprecated declaration SensorInit - give arg types
+  uint8 SensorInit();
+..\USER\Inc\sensor.h(52): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\USER\Src\main.c(47): warning:  #223-D: function "Init_MPU6050" declared implicitly
   	Init_MPU6050();
-..\USER\Src\main.c(62): warning:  #223-D: function "Read_MPU6050" declared implicitly
-  			Read_MPU6050();
 ..\USER\Src\main.c(74): warning:  #1035-D: single-precision operand implicitly converted to double-precision
-..\USER\Src\main.c(75): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8 *"
-  			UART1_SendBytes(sendBuff,strlen(sendBuff));
 ..\USER\Src\main.c(53): warning:  #177-D: variable "t2"  was declared but never referenced
   	uint32 t2;
-..\USER\Src\main.c: 42 warnings, 0 errors
-linking...
-Program Size: Code=18044 RO-data=736 RW-data=24 ZI-data=4440  
-".\OutPut\MyF3.axf" - 0 Error(s), 45 Warning(s).
+..\USER\Src\main.c: 41 warnings, 0 errors
+".\OutPut\MyF3.axf" - 9 Error(s), 53 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -136,6 +168,7 @@ Package Vendor: Keil
   C:\software\keil5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include
 
 <h2>Collection of Component Files used:</h2>
+Target not created.
 Build Time Elapsed:  00:00:05
 </pre>
 </body>
