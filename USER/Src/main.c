@@ -49,31 +49,36 @@ int main(void)
 	
 	struct TimerTemp t1;
 	ReSetTimerTemp(&t1);
+	struct TimerTemp t2;
+	ReSetTimerTemp(&t2);
 	char sendBuff[100];
-	uint32 t2;
-	
+	SensorInit();	//传感器初始化
 	while (1)
 	{
 		
-		if(WaitSysTime_UnBlocked(&t1,500,UINT_MS))
+		if(WaitSysTime_UnBlocked(&t1,2,UINT_MS))
 		{
 			ReSetTimerTemp(&t1);
 			Sys_LED_Negative();
 			
 			
-
+			SensorThread();	//传感器数据读取与处理
 			//imuUpdate(acc,gyro,&state,2);
-			snprintf(sendBuff,100,"ACC_X:%d\t ACC_Y:%d\t ACC_Z:%d\r\n\
-			GYRO_X:%d\t GYRO_Y:%d\t GYRO_Z:%d\r\n Temp:%f\r\n",
-			sensor.mpu6050.acc.x.data,
-			sensor.mpu6050.acc.y.data,
-			sensor.mpu6050.acc.z.data,
-			sensor.mpu6050.gyro.x.data,
-			sensor.mpu6050.gyro.y.data,
-			sensor.mpu6050.gyro.z.data,
-			36.53+(float)sensor.mpu6050.thermometer.Temp.data/340);
-			//UART1_SendBytes(sendBuff,strlen(sendBuff));
-			//DMA_UART1_SendThread();		
+			if(WaitSysTime_UnBlocked(&t2,100,UINT_MS))
+			{
+				ReSetTimerTemp(&t2);
+				snprintf(sendBuff,100,"ACC_X:%f\t ACC_Y:%f\t ACC_Z:%f\r\n\
+				GYRO_X:%f\t GYRO_Y:%f\t GYRO_Z:%f\r\n Temp:%f\r\n",
+				sensor.mpu6050.acc.axisTFloat_G.axisTF.x,
+				sensor.mpu6050.acc.axisTFloat_G.axisTF.y,
+				sensor.mpu6050.acc.axisTFloat_G.axisTF.z,
+				sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.x,
+				sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.y,
+				sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.z,
+				36.53+(float)sensor.mpu6050.thermometer.Temp.data/340);
+				UART1_SendBytes(sendBuff,strlen(sendBuff));
+				DMA_UART1_SendThread();		
+			}
 		}
 		
 	}

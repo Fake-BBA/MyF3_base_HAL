@@ -3,11 +3,25 @@
 
 #include "MyTypedef.h"
 #include "stm32f3xx_hal.h"
+#pragma anon_unions
 
 union Union_DByte{	//double byte，双字节联合体
 	uint8 H_L[2];
 	int16 data;
 };
+
+//代表x,y,z轴的float结构体变量
+struct AxisTF{
+	float x;
+	float y;
+	float z;
+};
+
+union Union_TFloat{ //Triple float，三个float的联合体
+	struct AxisTF axisTF;
+	float axis[3];
+};
+
 //加速度计
 struct Accelerometer{
 	//传感器原始数据
@@ -16,20 +30,17 @@ struct Accelerometer{
     union Union_DByte z;
 	
 	//将原始数据转化为国际单位的结果
-	float x_g;	//gravity unit
-	float y_g;	//gravity unit
-	float z_g;	//gravity unit
+	union Union_TFloat axisTFloat_G; //gravity unit
 };
 //陀螺仪
 struct Gyroscope{
+	//传感器原始数据
     union Union_DByte x;
     union Union_DByte y;
     union Union_DByte z;
 	
 	//将原始数据转化为国际单位的结果
-	float x_degree;	//角度
-	float y_degree;	//角度
-	float z_degree;	//角度
+	union Union_TFloat axisTFloat_DEG;	//角度
 };
 
 //温度计
@@ -86,4 +97,5 @@ typedef struct
 }BiasObj;	
 
 uint8 SensorInit();
+void SensorThread();
 #endif
