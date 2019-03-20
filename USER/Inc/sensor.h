@@ -90,8 +90,8 @@ typedef union
 typedef struct
 {
 	Axis3f     bias;
-	bool       isBiasValueFound;
-	bool       isBufferFilled;
+	bool       isBiasValueFound;	//找到偏置值
+	bool       isBufferFilled;	//方差buff已经填满
 	Axis3i16*  bufHead;
 	Axis3i16   buffer[SENSORS_NBR_OF_BIAS_SAMPLES];
 }BiasObj;	

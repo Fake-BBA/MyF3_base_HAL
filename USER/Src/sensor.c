@@ -22,8 +22,16 @@ static bool gyroBiasFound = false;
 static float accScaleSum = 0;
 static float accScale = 1;
 
+/*传感器偏置初始化*/
+static void sensorsBiasObjInit(BiasObj* bias)
+{
+	bias->isBufferFilled = false;
+	bias->bufHead = bias->buffer;
+}
+
 uint8 SensorInit()
 {
+	sensorsBiasObjInit(&gyroBiasRunning);
 	for (uint8 i = 0; i < 3; i++)// 初始化加速计和陀螺二阶低通滤波
 	{
 		lpf2pInit(&gyroLpf[i], 1000, GYRO_LPF_CUTOFF_FREQ);
@@ -142,10 +150,10 @@ static void sensorsAddBiasValue(BiasObj* bias, int16_t x, int16_t y, int16_t z)
 static bool processGyroBias(int16_t gx, int16_t gy, int16_t gz, Axis3f *gyroBiasOut)
 {
 	sensorsAddBiasValue(&gyroBiasRunning, gx, gy, gz);	//往方差缓冲区（循环缓冲区）添加一个新值
-
+	
 	if (!gyroBiasRunning.isBiasValueFound)	//如果偏置值没有找到
 	{
-		sensorsFindBiasValue(&gyroBiasRunning);
+		sensorsFindBiasValue(&gyroBiasRunning);	//查找偏置值
 		if (gyroBiasRunning.isBiasValueFound)	
 		{
 			//如果还未找到，就亮灯
@@ -171,10 +179,14 @@ void processAccGyroMeasurements(struct Sensor *p_Sensor)
 	int16_t gz = p_Sensor->mpu6050.gyro.z.data;
 
 	static bool gyroBiasFound=false;
-	gyroBiasFound = processGyroBias(gx, gy, gz, &gyroBias);	//计算陀螺方差
+	if(!gyroBiasFound)
+		gyroBiasFound = processGyroBias(gx, gy, gz, &gyroBias);	//计算陀螺方差
+	
+	static bool accBiasFound=false;
 	if (gyroBiasFound)	//如果陀螺仪偏置值成功找到，则找加速度的重力缩放因子
 	{
-		processAccScale(ax, ay, az);	/*计算accScale*/ 
+		if(!accBiasFound)
+			accBiasFound=processAccScale(ax, ay, az);	/*计算accScale*/ 
 	}
 	
 	p_Sensor->mpu6050.gyro.axisTFloat_DEG.axisTF.x = -(gx - gyroBias.x) * SENSORS_DEG_PER_LSB_CFG;	/*单位 °/s */

@@ -61,8 +61,9 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
 	extern uint32 systemTime;
+	extern bool bool_mainLoop;
 	systemTime++;
-
+	bool_mainLoop=1;
 }
 
 /******************************************************************************/

@@ -7,6 +7,7 @@
 
 void SystemClock_Config(void);
 
+bool bool_mainLoop;
 void MX_DMA_Init(void) 
 {
   /* DMA controller clock enable */
@@ -53,20 +54,30 @@ int main(void)
 	ReSetTimerTemp(&t2);
 	char sendBuff[100];
 	SensorInit();	//传感器初始化
+	uint32 times1,times2;
 	while (1)
 	{
 		
-		if(WaitSysTime_UnBlocked(&t1,2,UINT_MS))
+		if(bool_mainLoop)	//1ms进入一次
 		{
+			
+			bool_mainLoop=0;
 			ReSetTimerTemp(&t1);
-			Sys_LED_Negative();
 			
 			
-			SensorThread();	//传感器数据读取与处理
-			//imuUpdate(acc,gyro,&state,2);
-			if(WaitSysTime_UnBlocked(&t2,100,UINT_MS))
+			if(++times1>=2)
 			{
+				SensorThread();	//传感器数据读取与处理
+				times1=0;
+			}
+			
+			//imuUpdate(acc,gyro,&state,2);
+			//if(WaitSysTime_UnBlocked(&t2,100,UINT_MS))
+			if(++times2>=100)
+			{
+				times2=0;
 				ReSetTimerTemp(&t2);
+				Sys_LED_Negative();
 				snprintf(sendBuff,100,"ACC_X:%f\t ACC_Y:%f\t ACC_Z:%f\r\n\
 				GYRO_X:%f\t GYRO_Y:%f\t GYRO_Z:%f\r\n Temp:%f\r\n",
 				sensor.mpu6050.acc.axisTFloat_G.axisTF.x,
