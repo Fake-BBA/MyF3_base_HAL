@@ -547,6 +547,26 @@
               <FileType>1</FileType>
               <FilePath>..\USER\Src\Attitude.c</FilePath>
             </File>
+            <File>
+              <FileName>fliter.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\Inc\fliter.h</FilePath>
+            </File>
+            <File>
+              <FileName>sensor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\Inc\sensor.h</FilePath>
+            </File>
+            <File>
+              <FileName>fliter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\Src\fliter.c</FilePath>
+            </File>
+            <File>
+              <FileName>sensor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\Src\sensor.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

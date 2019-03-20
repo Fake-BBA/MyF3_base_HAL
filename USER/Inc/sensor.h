@@ -3,47 +3,23 @@
 
 #include "MyTypedef.h"
 
+union Union_DByte{	//double byte，双字节联合体
+	uint8 H_L[2];
+	uint16 data;
+};
 struct Accelerometer{
-    union X
-    {
-        uint8 H_L[2];
-        uint16 data;
-    }x;
-    union Y
-    {
-        uint8 H_L[2];
-        uint16 data;
-    }y;
-    union Z
-    {
-        uint8 H_L[2];
-        uint16 data;
-    }z;
+	union Union_DByte x;
+    union Union_DByte y;
+    union Union_DByte z;
 };
 struct Gyroscope{
-    union X
-    {
-        uint8 H_L[2];
-        uint16 data;
-    }x;
-    union Y
-    {
-        uint8 H_L[2];
-        uint16 data;
-    }y;
-    union Z
-    {
-        uint8 H_L[2];
-        uint16 data;
-    }z;
+    union Union_DByte x;
+    union Union_DByte y;
+    union Union_DByte z;
 };
 
 struct Thermometer{
-    union Temm
-    {
-        uint8 H_L[2];
-        uint16 data;
-    };
+    union Union_DByte Temp;
 };
 struct MPU6050{
     struct Accelerometer acc;
