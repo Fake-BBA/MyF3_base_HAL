@@ -537,36 +537,6 @@
               <FileType>1</FileType>
               <FilePath>..\USER\Src\system_stm32f3xx.c</FilePath>
             </File>
-            <File>
-              <FileName>Attitude.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\USER\Inc\Attitude.h</FilePath>
-            </File>
-            <File>
-              <FileName>Attitude.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\Src\Attitude.c</FilePath>
-            </File>
-            <File>
-              <FileName>fliter.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\USER\Inc\fliter.h</FilePath>
-            </File>
-            <File>
-              <FileName>sensor.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\USER\Inc\sensor.h</FilePath>
-            </File>
-            <File>
-              <FileName>fliter.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\Src\fliter.c</FilePath>
-            </File>
-            <File>
-              <FileName>sensor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\Src\sensor.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -791,6 +761,41 @@
               <FileName>Har_I2C.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Devices\HardWare\Src\Har_I2C.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Flight</GroupName>
+          <Files>
+            <File>
+              <FileName>fliter.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\Inc\fliter.h</FilePath>
+            </File>
+            <File>
+              <FileName>Attitude.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\Src\Attitude.c</FilePath>
+            </File>
+            <File>
+              <FileName>Attitude.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\Inc\Attitude.h</FilePath>
+            </File>
+            <File>
+              <FileName>sensor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\Inc\sensor.h</FilePath>
+            </File>
+            <File>
+              <FileName>fliter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\Src\fliter.c</FilePath>
+            </File>
+            <File>
+              <FileName>sensor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\Src\sensor.c</FilePath>
             </File>
           </Files>
         </Group>

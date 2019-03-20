@@ -66,3 +66,4 @@
 .\output\dri_mpu6050.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal_usart_ex.h
 .\output\dri_mpu6050.o: ..\System\Hal_Lib\Inc\stm32f3xx_hal_wwdg.h
 .\output\dri_mpu6050.o: ..\Devices\HardWare\Inc\Har_I2C.h
+.\output\dri_mpu6050.o: ..\USER\Inc\sensor.h

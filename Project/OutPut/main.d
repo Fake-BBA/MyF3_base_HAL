@@ -80,3 +80,4 @@
 .\output\main.o: ..\Devices\Drivers\Inc\Dri_HMC5883L.h
 .\output\main.o: C:\software\keil5\ARM\ARMCC\Bin\..\include\string.h
 .\output\main.o: ..\USER\Inc\Attitude.h
+.\output\main.o: ..\USER\Inc\sensor.h

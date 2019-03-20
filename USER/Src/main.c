@@ -52,28 +52,26 @@ int main(void)
 	char sendBuff[100];
 	uint32 t2;
 	
-	struct AccData acc;
-	struct GyroData gyro;
-	struct FlightState state;
 	while (1)
 	{
 		
-		if(WaitSysTime_UnBlocked(&t1,2,UINT_MS))
+		if(WaitSysTime_UnBlocked(&t1,500,UINT_MS))
 		{
 			ReSetTimerTemp(&t1);
 			Sys_LED_Negative();
 			Read_MPU6050();
 			
-			acc.x=ACC_X;
-			acc.y=ACC_Y;
-			acc.z=ACC_Z;
-			
-			gyro.x=GYR_X;
-			gyro.y=GYR_Y;
-			gyro.z=GYR_Z;
-			
-			imuUpdate(acc,gyro,&state,2);
-			//snprintf(sendBuff,100,"ACC_X:%d\tACC_Y:%d\tACC_Z:%d\r\n Temp:%f\r\n",ACC_X,ACC_Y,ACC_Z,MPU6050_TEMP);
+
+			//imuUpdate(acc,gyro,&state,2);
+			snprintf(sendBuff,100,"ACC_X:%d\t ACC_Y:%d\t ACC_Z:%d\r\n\
+			GYRO_X:%d\t GYRO_Y:%d\t GYRO_Z:%d\r\n Temp:%f\r\n",
+			sensor.mpu6050.acc.x.data,
+			sensor.mpu6050.acc.y.data,
+			sensor.mpu6050.acc.z.data,
+			sensor.mpu6050.gyro.x.data,
+			sensor.mpu6050.gyro.y.data,
+			sensor.mpu6050.gyro.z.data,
+			36.53+(float)sensor.mpu6050.thermometer.Temp.data/340);
 			UART1_SendBytes(sendBuff,strlen(sendBuff));
 			DMA_UART1_SendThread();		
 		}

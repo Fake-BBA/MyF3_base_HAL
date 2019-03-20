@@ -24,9 +24,6 @@
 ".\output\stm32f3xx_it.o"
 ".\output\stm32f3xx_hal_msp.o"
 ".\output\system_stm32f3xx.o"
-".\output\attitude.o"
-".\output\fliter.o"
-".\output\sensor.o"
 ".\output\startup_stm32f303xc.o"
 ".\output\dri_buzzer.o"
 ".\output\dri_hmc5883l.o"
@@ -46,6 +43,9 @@
 ".\output\har_w25q64.o"
 ".\output\har_stm32_dma.o"
 ".\output\har_i2c.o"
+".\output\attitude.o"
+".\output\fliter.o"
+".\output\sensor.o"
 --strict --scatter ".\OutPut\MyF3.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
