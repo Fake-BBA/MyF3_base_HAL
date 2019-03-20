@@ -32,4 +32,5 @@ struct Sensor
     
 };
 
+extern struct Sensor sensor;
 #endif

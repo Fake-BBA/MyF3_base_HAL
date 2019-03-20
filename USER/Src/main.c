@@ -3,6 +3,7 @@
 #include "Devices.h"
 #include "string.h"
 #include "Attitude.h"
+#include "sensor.h"
 
 void SystemClock_Config(void);
 

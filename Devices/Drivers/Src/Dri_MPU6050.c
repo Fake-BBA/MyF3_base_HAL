@@ -1,4 +1,5 @@
 #include "Dri_MPU6050.h"
+#include "sensor.h"
 
 uint8_t MPU6050_Init1[3] = {0x00,0x01,0x00};
 uint8_t MPU6050_Init2[2] = {0x80,0x00};
