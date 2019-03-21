@@ -56,26 +56,28 @@ int main(void)
 	char sendBuff[100];
 	SensorInit();	//传感器初始化
 	uint32 times1,times2;
+	extern uint32 INT_Times;
 	while (1)
 	{
 		if(bool_mainLoop)	//1ms进入一次
 		{
 			
 			bool_mainLoop=0;
-			ReSetTimerTemp(&t1);
+			
 			
 			
 			if(++times1>=2)
 			{
 				//SensorThread();	//传感器数据读取与处理
-				imuUpdate(0.002);	//4ms执行一次
+				imuUpdate(0.002);	//2ms执行一次 500HZ
 				times1=0;
+				INT_Times++;
 			}
 			
 			if(++times2>=50)
 			{
 				times2=0;
-				ReSetTimerTemp(&t2);
+				
 				Sys_LED_Negative();
 				RecvMessageThread();	//处理收到的数据
 //				snprintf(sendBuff,100,"ACC_X:%d\t ACC_Y:%d\t ACC_Z:%d\r\n\
@@ -109,10 +111,10 @@ int main(void)
 //				flightState.attitude.yaw);
 
 
-				extern uint32 INT_Times;
-				snprintf(sendBuff,100,"INT times:%d\r\n",INT_Times);
-				INT_Times=0;
-				//UART1_SendBytes(sendBuff,strlen(sendBuff));
+				
+//				snprintf(sendBuff,100,"INT times:%d\r\n",INT_Times);
+//				INT_Times=0;
+//				UART1_SendBytes(sendBuff,strlen(sendBuff));
 				
 				DMA_UART1_SendThread();		
 			}

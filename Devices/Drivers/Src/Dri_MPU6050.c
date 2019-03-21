@@ -75,4 +75,10 @@ uint8 Read_MPU6050()
 	sensor.mpu6050.gyro.z.H_L[0]=MPU6050_Data[13];
 }
 
-
+//MPU6050中断
+uint32 INT_Times=0;	//中断次数
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	
+	SensorThread();	//传感器数据读取与处理
+}
