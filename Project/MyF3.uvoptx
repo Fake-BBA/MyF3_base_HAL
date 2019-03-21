@@ -152,18 +152,34 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>45</LineNumber>
+          <LineNumber>160</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134228612</Address>
+          <Address>134220570</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>C:\MyProgram\STM32\绋嬪簭\Mine\USER\Src\Communication.c</Filename>
+          <Filename>C:\MyProgram\STM32\绋嬪簭\Mine\USER\Src\stm32f3xx_it.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\MyF3\../USER/Src/Communication.c\45</Expression>
+          <Expression>\\MyF3\../USER/Src/stm32f3xx_it.c\160</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>153</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134220066</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>C:\MyProgram\STM32\绋嬪簭\Mine\USER\Src\stm32f3xx_it.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\MyF3\../USER/Src/stm32f3xx_it.c\153</Expression>
         </Bp>
       </Breakpoint>
       <Tracepoint>
@@ -676,7 +692,7 @@
 
   <Group>
     <GroupName>Drivers</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -876,7 +892,7 @@
 
   <Group>
     <GroupName>HardWare</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

@@ -18,9 +18,11 @@ BiasObj	gyroBiasRunning;	//查找陀螺仪偏置值
 static Axis3f  gyroBias;	//最终找到的偏置值
 
 //找重力缩放因子
-static bool gyroBiasFound = false;
+static bool accBiasFound=false;	//是否找到加速度计重力缩放因子
 static float accScaleSum = 0;
 static float accScale = 1;
+
+static bool gyroBiasFound=false;	//是否找到陀螺仪偏置值
 
 /*传感器偏置初始化*/
 static void sensorsBiasObjInit(BiasObj* bias)
@@ -178,11 +180,11 @@ void processAccGyroMeasurements(struct Sensor *p_Sensor)
 	int16_t gx = p_Sensor->mpu6050.gyro.y.data;
 	int16_t gz = p_Sensor->mpu6050.gyro.z.data;
 
-	static bool gyroBiasFound=false;
-	if(!gyroBiasFound)
-		gyroBiasFound = processGyroBias(gx, gy, gz, &gyroBias);	//计算陀螺方差
 	
-	static bool accBiasFound=false;
+	if(!gyroBiasFound)
+	gyroBiasFound = processGyroBias(gx, gy, gz, &gyroBias);	//计算陀螺方差
+	
+	
 	if (gyroBiasFound)	//如果陀螺仪偏置值成功找到，则找加速度的重力缩放因子
 	{
 		if(!accBiasFound)

@@ -67,12 +67,12 @@ int main(void)
 			
 			if(++times1>=2)
 			{
-				SensorThread();	//传感器数据读取与处理
+				//SensorThread();	//传感器数据读取与处理
 				imuUpdate(0.002);	//4ms执行一次
 				times1=0;
 			}
 			
-			if(++times2>=20)
+			if(++times2>=50)
 			{
 				times2=0;
 				ReSetTimerTemp(&t2);
@@ -107,6 +107,11 @@ int main(void)
 //				flightState.attitude.pitch,
 //				flightState.attitude.roll,
 //				flightState.attitude.yaw);
+
+
+				extern uint32 INT_Times;
+				snprintf(sendBuff,100,"INT times:%d\r\n",INT_Times);
+				INT_Times=0;
 				//UART1_SendBytes(sendBuff,strlen(sendBuff));
 				
 				DMA_UART1_SendThread();		

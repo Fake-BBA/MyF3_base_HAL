@@ -135,7 +135,6 @@ void USART1_IRQHandler(void)
 			//总计数减去未传输的数据个数，得到已经接收的数据个数
 			uart1_RX_Buffer.length =uart1_RX_Buffer.buffSize - __HAL_DMA_GET_COUNTER(&hdma_usart1_rx);
 		}
-		
 	}
 }
 
@@ -147,4 +146,16 @@ void USART3_IRQHandler(void)
 void TIM7_IRQHandler(void)
 {
 	//HAL_TIM_IRQHandler(&htim7);
+}
+
+void EXTI15_10_IRQHandler()
+{
+	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);	//PC13
+}
+
+uint32 INT_Times=0;	//中断次数
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	INT_Times++;
+	SensorThread();	//传感器数据读取与处理
 }
