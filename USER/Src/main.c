@@ -4,6 +4,7 @@
 #include "string.h"
 #include "Attitude.h"
 #include "sensor.h"
+#include "Communication.h"
 
 void SystemClock_Config(void);
 
@@ -44,7 +45,7 @@ int main(void)
 	Buzzer_Init();
 	MX_DMA_Init();
 	MX_I2C1_Init();
-	USART1_UART_Init(1000000);
+	USART1_UART_Init(500000);
 	Init_MPU6050();
 	//USART3_UART_Init();
 	
@@ -57,7 +58,6 @@ int main(void)
 	uint32 times1,times2;
 	while (1)
 	{
-		
 		if(bool_mainLoop)	//1ms进入一次
 		{
 			
@@ -68,18 +68,16 @@ int main(void)
 			if(++times1>=2)
 			{
 				SensorThread();	//传感器数据读取与处理
-				imuUpdate(1.0f/(1000/2));	//2ms执行一次
+				imuUpdate(0.002);	//4ms执行一次
 				times1=0;
 			}
 			
-			
-			
-			//if(WaitSysTime_UnBlocked(&t2,100,UINT_MS))
-			if(++times2>=100)
+			if(++times2>=20)
 			{
 				times2=0;
 				ReSetTimerTemp(&t2);
 				Sys_LED_Negative();
+				RecvMessageThread();	//处理收到的数据
 //				snprintf(sendBuff,100,"ACC_X:%d\t ACC_Y:%d\t ACC_Z:%d\r\n\
 //				GYRO_X:%d\t GYRO_Y:%d\t GYRO_Z:%d\r\n Temp:%f\r\n",
 //				sensor.mpu6050.acc.x.data,
@@ -101,12 +99,15 @@ int main(void)
 //				sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.z,
 //				36.53+(float)sensor.mpu6050.thermometer.Temp.data/340);
 //				UART1_SendBytes(sendBuff,strlen(sendBuff));
-				
-				snprintf(sendBuff,100,"Pitch:%f\t Roll:%f\t Yaw:%f\r\n",
-				flightState.attitude.pitch,
-				flightState.attitude.roll,
-				flightState.attitude.yaw);
-				UART1_SendBytes(sendBuff,strlen(sendBuff));
+				SendStatus(flightState.attitude.pitch,
+						   flightState.attitude.roll,
+						   flightState.attitude.yaw);
+				SendSensor();
+//				snprintf(sendBuff,100,"Pitch:%f\t Roll:%f\t Yaw:%f\r\n",
+//				flightState.attitude.pitch,
+//				flightState.attitude.roll,
+//				flightState.attitude.yaw);
+				//UART1_SendBytes(sendBuff,strlen(sendBuff));
 				
 				DMA_UART1_SendThread();		
 			}

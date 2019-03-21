@@ -46,6 +46,7 @@
 ".\output\attitude.o"
 ".\output\fliter.o"
 ".\output\sensor.o"
+".\output\communication.o"
 --strict --scatter ".\OutPut\MyF3.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

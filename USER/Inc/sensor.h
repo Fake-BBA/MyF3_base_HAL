@@ -52,10 +52,22 @@ struct MPU6050{
     struct Gyroscope gyro; 
     struct Thermometer thermometer;
 };
+//磁力计
+struct HMC5883L
+{
+	//传感器原始数据
+	union Union_DByte x;
+    union Union_DByte y;
+    union Union_DByte z;
+	
+	//将原始数据转化为国际单位的结果
+	union Union_TFloat axisTFloat_G; //gravity unit
+};
+
 struct Sensor
 {
     struct MPU6050 mpu6050;
-    
+    struct HMC5883L hmc5883l;
 };
 
 extern struct Sensor sensor;
