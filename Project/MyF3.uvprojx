@@ -762,6 +762,16 @@
               <FileType>1</FileType>
               <FilePath>..\Devices\HardWare\Src\Har_I2C.c</FilePath>
             </File>
+            <File>
+              <FileName>Har_PWM.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Devices\HardWare\Inc\Har_PWM.h</FilePath>
+            </File>
+            <File>
+              <FileName>Har_PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Devices\HardWare\Src\Har_PWM.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -806,6 +816,16 @@
               <FileName>Communication.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\Src\Communication.c</FilePath>
+            </File>
+            <File>
+              <FileName>PID.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\USER\Inc\PID.h</FilePath>
+            </File>
+            <File>
+              <FileName>PID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\Src\PID.c</FilePath>
             </File>
           </Files>
         </Group>

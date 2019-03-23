@@ -182,7 +182,7 @@ void processAccGyroMeasurements(struct Sensor *p_Sensor)
 
 	
 	if(!gyroBiasFound)
-	gyroBiasFound = processGyroBias(gx, gy, gz, &gyroBias);	//计算陀螺方差
+		gyroBiasFound = processGyroBias(gx, gy, gz, &gyroBias);	//计算陀螺方差
 	
 	
 	if (gyroBiasFound)	//如果陀螺仪偏置值成功找到，则找加速度的重力缩放因子
@@ -212,7 +212,7 @@ void processAccGyroMeasurements(struct Sensor *p_Sensor)
 
 void SensorThread()
 {
-	Read_MPU6050();	//读取MPU6050数据到sensor结构体
+	
 	
 	//处理MPU6050原始数据
 	processAccGyroMeasurements(&sensor);

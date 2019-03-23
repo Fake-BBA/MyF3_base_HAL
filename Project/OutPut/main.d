@@ -82,3 +82,4 @@
 .\output\main.o: ..\USER\Inc\Attitude.h
 .\output\main.o: ..\USER\Inc\sensor.h
 .\output\main.o: ..\USER\Inc\Communication.h
+.\output\main.o: ..\USER\Inc\PID.h

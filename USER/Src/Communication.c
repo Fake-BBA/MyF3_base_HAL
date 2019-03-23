@@ -1,12 +1,13 @@
 #include "Communication.h"
 #include "Har_Uart.h"
 #include "sensor.h"
+#include "Attitude.h"
 
-void SendStatus(float pitch,float roll,float yaw)
+void SendStatus()
 {
-	int16 int16_pitch=pitch*100
-	,int16_roll=roll*100,
-	int16_yaw=yaw*100;
+	int16 int16_pitch=flightState.attitude.pitch*100
+	,int16_roll=flightState.attitude.roll*100,
+	int16_yaw=flightState.attitude.yaw*100;
 	
 	int32 ALT_USE=0;	//高度
 	uint8 flyModel=1;	//飞行模式

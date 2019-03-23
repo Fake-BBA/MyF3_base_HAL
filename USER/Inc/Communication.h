@@ -2,7 +2,7 @@
 #define _COMMUNICATION_H__
 
 
-void SendStatus(float pitch,float roll,float yaw);
+void SendStatus();
 void SendSensor();
 void RecvMessageThread();
 

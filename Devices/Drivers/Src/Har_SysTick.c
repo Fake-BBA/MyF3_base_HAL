@@ -12,7 +12,7 @@ bool SysTick_Init(void)
      * SystemFrequency / 100000     10us中断一次
      * SystemFrequency / 1000000 1us中断一次
      */ 
-	uint32_t ticks= SystemCoreClock / 1000;						/* 设置定时周期为1ms  */
+	uint32_t ticks= SystemCoreClock / 1000000;						/* 设置定时周期为1ms  */
 
 	if ((ticks - 1) > SysTick_LOAD_RELOAD_Msk)  return (1);      /* Reload value impossible */
 

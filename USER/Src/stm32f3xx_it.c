@@ -60,10 +60,8 @@ void PendSV_Handler(void)
 
 void SysTick_Handler(void)
 {
-	extern uint32 systemTime;
-	extern bool bool_mainLoop;
-	systemTime++;
-	bool_mainLoop=1;
+	extern uint32 sysTime;
+	sysTime++;
 }
 
 /******************************************************************************/
@@ -126,6 +124,7 @@ void USART1_IRQHandler(void)
 	HAL_UART_IRQHandler(&huart1);
 	if(USART1 == huart1.Instance)
 	{
+		//空闲中断，即接收完成中断
 		if(__HAL_UART_GET_FLAG(&huart1,UART_FLAG_IDLE) != RESET)//idle标志被置位
 		{
 			uart1_RX_Buffer.stateFlag = RECV_COMPLETE;// 接受完成标志位
@@ -148,6 +147,7 @@ void TIM7_IRQHandler(void)
 	//HAL_TIM_IRQHandler(&htim7);
 }
 
+//PC13高电平外部中断
 void EXTI15_10_IRQHandler()
 {
 	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_13);	//PC13

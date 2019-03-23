@@ -43,10 +43,12 @@
 ".\output\har_w25q64.o"
 ".\output\har_stm32_dma.o"
 ".\output\har_i2c.o"
+".\output\har_pwm.o"
 ".\output\attitude.o"
 ".\output\fliter.o"
 ".\output\sensor.o"
 ".\output\communication.o"
+".\output\pid.o"
 --strict --scatter ".\OutPut\MyF3.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

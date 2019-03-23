@@ -5,6 +5,7 @@
 #include "Attitude.h"
 #include "sensor.h"
 #include "Communication.h"
+#include "PID.h"
 
 void SystemClock_Config(void);
 
@@ -47,104 +48,75 @@ int main(void)
 	MX_I2C1_Init();
 	USART1_UART_Init(500000);
 	Init_MPU6050();
+	Init_PWM();	//初始化PWM，包括引脚
 	//USART3_UART_Init();
 	
-	struct TimerTemp t1;
-	ReSetTimerTemp(&t1);
-	struct TimerTemp t2;
-	ReSetTimerTemp(&t2);
-	char sendBuff[100];
 	SensorInit();	//传感器初始化
+	
+	struct TimerTemp t_IMU_Update;
+	ReSetTimerTemp(&t_IMU_Update);
+	
+	struct TimerTemp tSendThread;
+	ReSetTimerTemp(&tSendThread);
+	
+	struct TimerTemp tRecv;
+	ReSetTimerTemp(&tRecv);
+	
 	uint32 times1,times2;
-	extern uint32 INT_Times;
 	while (1)
 	{
-		if(bool_mainLoop)	//1ms进入一次
+		if(WaitSysTime(&t_IMU_Update,2,UINT_MS))	//1ms进入一次
 		{
-			
-			bool_mainLoop=0;
-			
-			
-			
-			if(++times1>=2)
-			{
-				//SensorThread();	//传感器数据读取与处理
-				imuUpdate(0.002);	//2ms执行一次 500HZ
-				times1=0;
-				INT_Times++;
-			}
-			
-			if(++times2>=50)
-			{
-				times2=0;
-				
-				Sys_LED_Negative();
-				RecvMessageThread();	//处理收到的数据
-//				snprintf(sendBuff,100,"ACC_X:%d\t ACC_Y:%d\t ACC_Z:%d\r\n\
-//				GYRO_X:%d\t GYRO_Y:%d\t GYRO_Z:%d\r\n Temp:%f\r\n",
-//				sensor.mpu6050.acc.x.data,
-//				sensor.mpu6050.acc.y.data,
-//				sensor.mpu6050.acc.z.data,
-//				sensor.mpu6050.gyro.x.data,
-//				sensor.mpu6050.gyro.y.data,
-//				sensor.mpu6050.gyro.z.data,
-//				36.53+(float)sensor.mpu6050.thermometer.Temp.data/340);
-//				UART1_SendBytes(sendBuff,strlen(sendBuff));
-				
-//				snprintf(sendBuff,100,"ACC_X:%f\t ACC_Y:%f\t ACC_Z:%f\r\n\
-//				GYRO_X:%f\t GYRO_Y:%f\t GYRO_Z:%f\r\n Temp:%f\r\n",
-//				sensor.mpu6050.acc.axisTFloat_G.axisTF.x,
-//				sensor.mpu6050.acc.axisTFloat_G.axisTF.y,
-//				sensor.mpu6050.acc.axisTFloat_G.axisTF.z,
-//				sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.x,
-//				sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.y,
-//				sensor.mpu6050.gyro.axisTFloat_DEG.axisTF.z,
-//				36.53+(float)sensor.mpu6050.thermometer.Temp.data/340);
-//				UART1_SendBytes(sendBuff,strlen(sendBuff));
-				SendStatus(flightState.attitude.pitch,
-						   flightState.attitude.roll,
-						   flightState.attitude.yaw);
-				SendSensor();
-//				snprintf(sendBuff,100,"Pitch:%f\t Roll:%f\t Yaw:%f\r\n",
-//				flightState.attitude.pitch,
-//				flightState.attitude.roll,
-//				flightState.attitude.yaw);
-
-
-				
-//				snprintf(sendBuff,100,"INT times:%d\r\n",INT_Times);
-//				INT_Times=0;
-//				UART1_SendBytes(sendBuff,strlen(sendBuff));
-				
-				DMA_UART1_SendThread();		
-			}
+			ReSetTimerTemp(&t_IMU_Update);
+			SensorThread();	//处理传感器数据
+			imuUpdate(0.002);	//2ms执行一次 500HZ
 		}
 		
+		//50ms进行一次发送
+		if(WaitSysTime(&tSendThread,50,UINT_MS))
+		{
+			ReSetTimerTemp(&tSendThread);
+			Sys_LED_Negative();	//系统灯取反
+			
+			SendStatus();	//发送飞行器基本姿态给上位机
+			SendSensor();	//发送传感器信息给上位机
+
+			DMA_UART1_SendThread();	//启动DMA发送
+		}
+		
+		//20ms处理一次接收到的数据
+		if(WaitSysTime(&tRecv,20,UINT_MS))
+		{
+			ReSetTimerTemp(&tRecv);
+			RecvMessageThread();	//处理收到的数据
+		}
 	}
-	
+}
+
+void Error_Handler()
+{
 }
 
 void SystemClock_Config(void)
 {
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  RCC_OscInitTypeDef RCC_OscInitStruct;
-  RCC_ClkInitTypeDef RCC_ClkInitStruct;
-  RCC_PeriphCLKInitTypeDef PeriphClkInit;
-
-    /**Initializes the CPU, AHB and APB busses clocks 
-    */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE;
+  /** Initializes the CPU, AHB and APB busses clocks 
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
-  HAL_RCC_OscConfig(&RCC_OscInitStruct);
-
-    /**Initializes the CPU, AHB and APB busses clocks 
-    */
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Initializes the CPU, AHB and APB busses clocks 
+  */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
@@ -152,21 +124,10 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2);
-
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART3|RCC_PERIPHCLK_I2C1;
-  PeriphClkInit.Usart3ClockSelection = RCC_USART3CLKSOURCE_PCLK1;
-  PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_HSI;
-  HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit);
-
-    /**Configure the Systick interrupt time 
-    */
-  HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
-
-    /**Configure the Systick 
-    */
-  HAL_SYSTICK_CLKSourceConfig(SYSTICK_CLKSOURCE_HCLK);
-
-  /* SysTick_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
 }
+
+
