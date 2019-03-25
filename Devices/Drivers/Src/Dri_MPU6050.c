@@ -79,7 +79,7 @@ uint8 Read_MPU6050()
 extern uint32 loopTimeMPU1,loopTimeMPU2;
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	loopTimeMPU1=GetSystemTime()-loopTimeMPU2;
+	//loopTimeMPU1=GetSystemTime()-loopTimeMPU2;
 	Read_MPU6050();	//读取MPU6050数据到sensor结构体;
-	loopTimeMPU2=GetSystemTime();
+	//loopTimeMPU2=GetSystemTime();
 }

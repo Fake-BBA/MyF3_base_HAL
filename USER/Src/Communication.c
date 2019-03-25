@@ -132,8 +132,16 @@ void SendLoopTime()
 
 void RecvMessageThread()
 {
-	static uint8 recvBuff[100];
+	static uint8 recvBuff[100]={0};
 	uint16 length=DMA_Usart1_Read(recvBuff);
+	
+	uint8 checkSum=0;
+	uint8 rang=recvBuff[3]+4;
+	for(uint8 i=0;i<rang;i++)
+		checkSum+=recvBuff[i];
+	
+	if(checkSum!=recvBuff[24])
+		return ;
 	
 	rcData.Throttle=(int16)(recvBuff[4]<<8)+recvBuff[5];
 	rcData.Yaw=(int16)recvBuff[6]<<8|recvBuff[7];
@@ -147,9 +155,9 @@ void RecvMessageThread()
 	rcData.AUX6=(int16)recvBuff[22]<<8|recvBuff[23];
 
 	
-	PWM1(PWM_PERIOD/100*rcData.Throttle);
-	PWM2(PWM_PERIOD/100*rcData.Yaw);
-	PWM3(PWM_PERIOD/100*rcData.Roll);
-	PWM4(PWM_PERIOD/100*rcData.Pitch);
+	PWM1(PWM_PERIOD/1000*(rcData.AUX1-1000));
+	PWM2(PWM_PERIOD/1000*(rcData.AUX2-1000));
+	PWM3(PWM_PERIOD/1000*(rcData.AUX3-1000));
+	PWM4(PWM_PERIOD/1000*(rcData.AUX4-1000));
 	
 }
