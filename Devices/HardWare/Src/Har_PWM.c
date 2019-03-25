@@ -120,7 +120,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
 }
 
 
-#define COUNT	36000
+
 void Init_PWM()
 {
 	MX_GPIO_Init();
@@ -161,8 +161,8 @@ static void MX_TIM4_Init(void)
   htim4.Instance = TIM4;
   htim4.Init.Prescaler = (4-1);	//4分频;
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim4.Init.Period = COUNT;
-  htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
+  htim4.Init.Period = PWM_PERIOD;
+  htim4.Init.ClockDivision = 0;
   htim4.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_PWM_Init(&htim4) != HAL_OK)
   {
@@ -225,8 +225,8 @@ static void MX_TIM15_Init(void)
   htim15.Instance = TIM15;
   htim15.Init.Prescaler = (4-1);	//4分频
   htim15.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim15.Init.Period = COUNT;
-  htim15.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
+  htim15.Init.Period = PWM_PERIOD;
+  htim15.Init.ClockDivision = 0;
   htim15.Init.RepetitionCounter = 0;
   htim15.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;	//不预加载
   if (HAL_TIM_PWM_Init(&htim15) != HAL_OK)
@@ -296,8 +296,8 @@ static void MX_TIM16_Init(void)
 	htim16.Instance = TIM16;
 	htim16.Init.Prescaler = (4-1);	//4分频
 	htim16.Init.CounterMode = TIM_COUNTERMODE_UP;
-	htim16.Init.Period = COUNT;
-	htim16.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
+	htim16.Init.Period = PWM_PERIOD;
+	htim16.Init.ClockDivision = 0;
 	htim16.Init.RepetitionCounter = 0;
 	htim16.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
 	if (HAL_TIM_Base_Init(&htim16) != HAL_OK)
@@ -360,8 +360,8 @@ static void MX_TIM17_Init(void)
   htim17.Instance = TIM17;
   htim17.Init.Prescaler = (4-1);	//4分频
   htim17.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim17.Init.Period = COUNT;
-  htim17.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
+  htim17.Init.Period = PWM_PERIOD;
+  htim17.Init.ClockDivision = 0;
   htim17.Init.RepetitionCounter = 0;
   htim17.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim17) != HAL_OK)

@@ -9,7 +9,7 @@
 
 void SystemClock_Config(void);
 
-bool bool_mainLoop;
+uint32 loopTimeIMU1,loopTimeIMU2,loopTimeMPU1,loopTimeMPU2;
 void MX_DMA_Init(void) 
 {
   /* DMA controller clock enable */
@@ -62,14 +62,17 @@ int main(void)
 	struct TimerTemp tRecv;
 	ReSetTimerTemp(&tRecv);
 	
-	uint32 times1,times2;
+	
 	while (1)
 	{
-		if(WaitSysTime(&t_IMU_Update,2,UINT_MS))	//1ms进入一次
+		if(WaitSysTime(&t_IMU_Update,1,UINT_MS))	//1ms进入一次
 		{
 			ReSetTimerTemp(&t_IMU_Update);
+			loopTimeIMU1=GetSystemTime()-loopTimeIMU2;
 			SensorThread();	//处理传感器数据
 			imuUpdate(0.002);	//2ms执行一次 500HZ
+			
+			loopTimeIMU2=GetSystemTime();
 		}
 		
 		//50ms进行一次发送
@@ -78,9 +81,9 @@ int main(void)
 			ReSetTimerTemp(&tSendThread);
 			Sys_LED_Negative();	//系统灯取反
 			
-			SendStatus();	//发送飞行器基本姿态给上位机
-			SendSensor();	//发送传感器信息给上位机
-
+			//SendStatus();	//发送飞行器基本姿态给上位机
+			//SendSensor();	//发送传感器信息给上位机
+			SendLoopTime();
 			DMA_UART1_SendThread();	//启动DMA发送
 		}
 		

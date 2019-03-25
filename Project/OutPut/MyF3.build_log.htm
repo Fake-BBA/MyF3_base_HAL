@@ -27,41 +27,47 @@ Project File Date:  03/23/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\software\keil5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling PID.c...
-..\USER\Inc\PID.h(4): warning:  #1295-D: Deprecated declaration PID_Thread - give arg types
-  void PID_Thread();
-..\USER\Inc\PID.h(6): warning:  #1-D: last line of file ends without a newline
-  #endif
+compiling Communication.c...
 ..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
   #endif
-..\Devices\HardWare\Inc\Har_PWM.h(6): warning:  #1295-D: Deprecated declaration Init_PWM - give arg types
-  void Init_PWM();
-..\Devices\HardWare\Inc\Har_PWM.h(17): warning:  #1-D: last line of file ends without a newline
+..\USER\Inc\Communication.h(33): warning:  #1295-D: Deprecated declaration SendStatus - give arg types
+  void SendStatus();
+..\USER\Inc\Communication.h(34): warning:  #1295-D: Deprecated declaration SendSensor - give arg types
+  void SendSensor();
+..\USER\Inc\Communication.h(35): warning:  #1295-D: Deprecated declaration SendLoopTime - give arg types
+  void SendLoopTime();
+..\USER\Inc\Communication.h(37): warning:  #1295-D: Deprecated declaration RecvMessageThread - give arg types
+  void RecvMessageThread();
+..\USER\Inc\Communication.h(39): warning:  #1-D: last line of file ends without a newline
   #endif
-..\USER\Src\PID.c(9): warning:  #1-D: last line of file ends without a newline
+..\USER\Inc\MyConfiguration.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_Uart.h(41): warning:  #1295-D: Deprecated declaration DMA_UART1_SendThread - give arg types
+  void DMA_UART1_SendThread();
+..\Devices\HardWare\Inc\Har_Uart.h(42): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\sensor.h(111): warning:  #1295-D: Deprecated declaration SensorInit - give arg types
+  uint8 SensorInit();
+..\USER\Inc\sensor.h(112): warning:  #1295-D: Deprecated declaration SensorThread - give arg types
+  void SensorThread();
+..\USER\Inc\sensor.h(113): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\Attitude.h(35): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_PWM.h(8): warning:  #1295-D: Deprecated declaration Init_PWM - give arg types
+  void Init_PWM();
+..\Devices\HardWare\Inc\Har_PWM.h(19): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Src\Communication.c(155): warning:  #1-D: last line of file ends without a newline
   }
-..\USER\Src\PID.c: 6 warnings, 0 errors
-compiling Har_PWM.c...
-..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Devices\HardWare\Inc\Har_PWM.h(6): warning:  #1295-D: Deprecated declaration Init_PWM - give arg types
-  void Init_PWM();
-..\Devices\HardWare\Inc\Har_PWM.h(17): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Devices\HardWare\Src\Har_PWM.c(5): warning:  #1295-D: Deprecated declaration MX_GPIO_Init - give arg types
-  void MX_GPIO_Init();
-..\Devices\HardWare\Src\Har_PWM.c(6): warning:  #1295-D: Deprecated declaration MX_TIM4_Init - give arg types
-  void MX_TIM4_Init();
-..\Devices\HardWare\Src\Har_PWM.c(7): warning:  #1295-D: Deprecated declaration MX_TIM15_Init - give arg types
-  void MX_TIM15_Init();
-..\Devices\HardWare\Src\Har_PWM.c(8): warning:  #1295-D: Deprecated declaration MX_TIM16_Init - give arg types
-  void MX_TIM16_Init();
-..\Devices\HardWare\Src\Har_PWM.c(9): warning:  #1295-D: Deprecated declaration MX_TIM17_Init - give arg types
-  void MX_TIM17_Init();
-..\Devices\HardWare\Src\Har_PWM.c: 8 warnings, 0 errors
+..\USER\Src\Communication.c(98): warning: C4488E: write to variable 'sendBuff' with offset out of bounds
+}
+..\USER\Src\Communication.c(98): warning: C4488E: write to variable 'sendBuff' with offset out of bounds
+}
+..\USER\Src\Communication.c: 18 warnings, 0 errors
 linking...
-Program Size: Code=21788 RO-data=832 RW-data=104 ZI-data=11088  
-".\OutPut\MyF3.axf" - 0 Error(s), 14 Warning(s).
+Program Size: Code=21776 RO-data=832 RW-data=120 ZI-data=11208  
+".\OutPut\MyF3.axf" - 0 Error(s), 18 Warning(s).
 
 <h2>Software Packages used:</h2>
 

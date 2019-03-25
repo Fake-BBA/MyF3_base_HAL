@@ -3,6 +3,8 @@
 
 #include "MyTypedef.h"
 
+#define PWM_PERIOD	36000	//ÖÜÆÚ	
+
 void Init_PWM();
 
 void PWM1(uint32 compare);

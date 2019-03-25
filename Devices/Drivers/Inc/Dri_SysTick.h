@@ -28,7 +28,7 @@ struct TimerTemp{
 	enum TimerState	state;
 };
 
-void GetSysTime(uint32 *obj);
+uint32 GetSystemTime();
 
 //等待时间，如果时间未到返回FALSE=0;时间到返回TRUE
 //大量使用指针原因是因为该单片机为8bit单片机，直接值传递消耗很多资源
