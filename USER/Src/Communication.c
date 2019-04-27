@@ -18,7 +18,7 @@ void SendStatus()
 	uint8 flyModel=1;	//飞行模式
 	uint8 armed=0;		//0加锁
 	
-	uint8 sendBuff[20];
+	uint8 sendBuff[50];
 	uint8 pos=0;
 	
 	sendBuff[pos++]=0XAA;
@@ -26,10 +26,10 @@ void SendStatus()
 	sendBuff[pos++]=0x01;	//功能字
 	sendBuff[pos++]=0x00;		//数据长度
 	
-	sendBuff[pos++]=int16_pitch>>8;
-	sendBuff[pos++]=int16_pitch;
 	sendBuff[pos++]=int16_roll>>8;
 	sendBuff[pos++]=int16_roll;
+	sendBuff[pos++]=int16_pitch>>8;
+	sendBuff[pos++]=int16_pitch;
 	sendBuff[pos++]=int16_yaw>>8;
 	sendBuff[pos++]=int16_yaw;
 	
@@ -55,7 +55,7 @@ void SendStatus()
 
 void SendSensor()
 {
-	uint8 sendBuff[20];
+	uint8 sendBuff[50];
 	uint8 pos=0;
 	
 	sendBuff[pos++]=0XAA;

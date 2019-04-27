@@ -662,7 +662,7 @@ erwork --depend=.\output\startup_stm32f303xc.d -o.\output\startup_stm32f303xc.o
  -I.\RTE\_Target_1 -IC:\software\keil5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0\Driver
 s\CMSIS\Device\ST\STM32F3xx\Include -IC:\software\keil5\ARM\CMSIS\Include -IC:\
 software\keil5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0 --predefine="__UVISION_VERSION
- SETA 526" --predefine="STM32F303xC SETA 1" --list=.\startup_stm32f303xc.lst ..
+ SETA 525" --predefine="STM32F303xC SETA 1" --list=.\startup_stm32f303xc.lst ..
 \System\Dev\startup_stm32f303xc.s
 
 

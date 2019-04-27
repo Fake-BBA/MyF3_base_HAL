@@ -3,7 +3,7 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ¶ÃVision V5.26.2.0
+IDE-Version: ¶ÃVision V5.25.3.0
 Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
 License Information: BB A, ZSC, LIC=HF8TG-VE355-ZCAJY-IURX2-DLA2F-NBCI8
  
@@ -22,13 +22,91 @@ Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
 C:\MyProgram\STM32\≥Ã–Ú\Mine\Project\MyF3.uvprojx
-Project File Date:  03/23/2019
+Project File Date:  04/17/2019
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\software\keil5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling Communication.c...
+compiling main.c...
 ..\USER\Inc\MyTypedef.h(25): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\MyConfiguration.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_LED.h(7): warning:  #1295-D: Deprecated declaration Sys_LED_PinInit - give arg types
+  void Sys_LED_PinInit();
+..\Devices\HardWare\Inc\Har_LED.h(8): warning:  #1295-D: Deprecated declaration Sys_LED_PinSet - give arg types
+  void Sys_LED_PinSet();
+..\Devices\HardWare\Inc\Har_LED.h(9): warning:  #1295-D: Deprecated declaration Sys_LED_PinReSet - give arg types
+  void Sys_LED_PinReSet();
+..\Devices\HardWare\Inc\Har_LED.h(10): warning:  #1295-D: Deprecated declaration Sys_LED_PinNegative - give arg types
+  void Sys_LED_PinNegative();	//ÂºïËÑöÁîµÂπ≥ÂèñÂèç
+..\Devices\HardWare\Inc\Har_LED.h(11): warning:  #1295-D: Deprecated declaration Sys_LED_PinState - give arg types
+  uint8 Sys_LED_PinState();
+..\Devices\HardWare\Inc\Har_LED.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\Drivers\Inc\Dri_LED.h(6): warning:  #1295-D: Deprecated declaration Sys_LED_Init - give arg types
+  void Sys_LED_Init();
+..\Devices\Drivers\Inc\Dri_LED.h(7): warning:  #1295-D: Deprecated declaration Sys_LED_ON - give arg types
+  void Sys_LED_ON();
+..\Devices\Drivers\Inc\Dri_LED.h(8): warning:  #1295-D: Deprecated declaration Sys_LED_OFF - give arg types
+  void Sys_LED_OFF();	
+..\Devices\Drivers\Inc\Dri_LED.h(9): warning:  #1295-D: Deprecated declaration Sys_LED_Negative - give arg types
+  void Sys_LED_Negative();
+..\Devices\Drivers\Inc\Dri_LED.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_stm32_dma.h(7): warning:  #1295-D: Deprecated declaration STM32_DMA_Init - give arg types
+  void STM32_DMA_Init();
+..\Devices\HardWare\Inc\Har_stm32_dma.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_Uart.h(41): warning:  #1295-D: Deprecated declaration DMA_UART1_SendThread - give arg types
+  void DMA_UART1_SendThread();
+..\Devices\HardWare\Inc\Har_Uart.h(42): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_SysTick.h(13): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\Drivers\Inc\Dri_SysTick.h(6): warning:  #1295-D: Deprecated declaration SystemTime_Init - give arg types
+  uint8 SystemTime_Init();
+..\Devices\Drivers\Inc\Dri_SysTick.h(7): warning:  #1295-D: Deprecated declaration GetSystemTime - give arg types
+  uint32 GetSystemTime();
+..\Devices\Drivers\Inc\Dri_SysTick.h(32): warning:  #1295-D: Deprecated declaration GetSystemTime - give arg types
+  uint32 GetSystemTime();
+..\Devices\Drivers\Inc\Dri_SysTick.h(42): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\HardWare\Inc\Har_Buzzer.h(13): warning:  #1295-D: Deprecated declaration Buzzer_PinInit - give arg types
+  void Buzzer_PinInit();
+..\Devices\HardWare\Inc\Har_Buzzer.h(14): warning:  #1295-D: Deprecated declaration Buzzer_PinSet - give arg types
+  void Buzzer_PinSet();
+..\Devices\HardWare\Inc\Har_Buzzer.h(15): warning:  #1295-D: Deprecated declaration Buzzer_PinReSet - give arg types
+  void Buzzer_PinReSet();
+..\Devices\HardWare\Inc\Har_Buzzer.h(16): warning:  #1295-D: Deprecated declaration Buzzer_PinNegative - give arg types
+  void Buzzer_PinNegative();
+..\Devices\HardWare\Inc\Har_Buzzer.h(17): warning:  #1295-D: Deprecated declaration Buzzer_PinState - give arg types
+  uint8 Buzzer_PinState();
+..\Devices\HardWare\Inc\Har_Buzzer.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\Drivers\Inc\Dri_Buzzer.h(6): warning:  #1295-D: Deprecated declaration Buzzer_Init - give arg types
+  void Buzzer_Init();
+..\Devices\Drivers\Inc\Dri_Buzzer.h(7): warning:  #1295-D: Deprecated declaration Buzzer_ON - give arg types
+  void Buzzer_ON();
+..\Devices\Drivers\Inc\Dri_Buzzer.h(8): warning:  #1295-D: Deprecated declaration Buzzer_OFF - give arg types
+  void Buzzer_OFF();	
+..\Devices\Drivers\Inc\Dri_Buzzer.h(9): warning:  #1295-D: Deprecated declaration Buzzer_Negative - give arg types
+  void Buzzer_Negative();
+..\Devices\Drivers\Inc\Dri_Buzzer.h(11): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\Devices\HardWare\Inc\Har_I2C.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\Devices\Drivers\Inc\Dri_MPU6050.h(23): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\Devices.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\Attitude.h(35): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\USER\Inc\sensor.h(111): warning:  #1295-D: Deprecated declaration SensorInit - give arg types
+  uint8 SensorInit();
+..\USER\Inc\sensor.h(112): warning:  #1295-D: Deprecated declaration SensorThread - give arg types
+  void SensorThread();
+..\USER\Inc\sensor.h(113): warning:  #1-D: last line of file ends without a newline
   #endif
 ..\USER\Inc\Communication.h(33): warning:  #1295-D: Deprecated declaration SendStatus - give arg types
   void SendStatus();
@@ -40,34 +118,18 @@ compiling Communication.c...
   void RecvMessageThread();
 ..\USER\Inc\Communication.h(39): warning:  #1-D: last line of file ends without a newline
   #endif
-..\USER\Inc\MyConfiguration.h(7): warning:  #1-D: last line of file ends without a newline
+..\USER\Inc\PID.h(4): warning:  #1295-D: Deprecated declaration PID_Thread - give arg types
+  void PID_Thread();
+..\USER\Inc\PID.h(6): warning:  #1-D: last line of file ends without a newline
   #endif
-..\Devices\HardWare\Inc\Har_Uart.h(41): warning:  #1295-D: Deprecated declaration DMA_UART1_SendThread - give arg types
-  void DMA_UART1_SendThread();
-..\Devices\HardWare\Inc\Har_Uart.h(42): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\USER\Inc\sensor.h(111): warning:  #1295-D: Deprecated declaration SensorInit - give arg types
-  uint8 SensorInit();
-..\USER\Inc\sensor.h(112): warning:  #1295-D: Deprecated declaration SensorThread - give arg types
-  void SensorThread();
-..\USER\Inc\sensor.h(113): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\USER\Inc\Attitude.h(35): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\Devices\HardWare\Inc\Har_PWM.h(8): warning:  #1295-D: Deprecated declaration Init_PWM - give arg types
-  void Init_PWM();
-..\Devices\HardWare\Inc\Har_PWM.h(19): warning:  #1-D: last line of file ends without a newline
-  #endif
-..\USER\Src\Communication.c(163): warning:  #1-D: last line of file ends without a newline
-  }
-..\USER\Src\Communication.c(98): warning: C4488E: write to variable 'sendBuff' with offset out of bounds
-}
-..\USER\Src\Communication.c(98): warning: C4488E: write to variable 'sendBuff' with offset out of bounds
-}
-..\USER\Src\Communication.c: 18 warnings, 0 errors
+..\USER\Src\main.c(50): warning:  #223-D: function "Init_MPU6050" declared implicitly
+  	Init_MPU6050();
+..\USER\Src\main.c(51): warning:  #223-D: function "Init_PWM" declared implicitly
+  	Init_PWM();	//ÂàùÂßãÂåñPWMÔºåÂåÖÊã¨ÂºïËÑ?
+..\USER\Src\main.c: 49 warnings, 0 errors
 linking...
-Program Size: Code=21856 RO-data=832 RW-data=112 ZI-data=11208  
-".\OutPut\MyF3.axf" - 0 Error(s), 18 Warning(s).
+Program Size: Code=22384 RO-data=832 RW-data=120 ZI-data=11208  
+".\OutPut\MyF3.axf" - 0 Error(s), 49 Warning(s).
 
 <h2>Software Packages used:</h2>
 

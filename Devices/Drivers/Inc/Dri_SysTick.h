@@ -24,7 +24,8 @@ enum TimerState{
 };
 
 struct TimerTemp{
-	uint32	Time;
+	uint32	Time;	//目标的计数单位值
+	uint32	expectTime;	//期待的计数单位个数
 	enum TimerState	state;
 };
 
@@ -34,6 +35,7 @@ uint32 GetSystemTime();
 //大量使用指针原因是因为该单片机为8bit单片机，直接值传递消耗很多资源
 //期待值不可超过0.5小时，否则会出错
 BOOL WaitSysTime(struct TimerTemp *timerTemp,uint32 expect,uint8 uint);
+void InitTimerTemp(struct TimerTemp *timerTemp);
 void ReSetTimerTemp(struct TimerTemp *timerTemp);
 
 

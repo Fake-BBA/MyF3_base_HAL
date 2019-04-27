@@ -54,20 +54,20 @@ int main(void)
 	SensorInit();	//传感器初始化
 	
 	struct TimerTemp t_IMU_Update;
-	ReSetTimerTemp(&t_IMU_Update);
+	InitTimerTemp(&t_IMU_Update);
 	
 	struct TimerTemp tSendThread;
-	ReSetTimerTemp(&tSendThread);
+	InitTimerTemp(&tSendThread);
 	
 	struct TimerTemp tRecv;
-	ReSetTimerTemp(&tRecv);
-	
+	InitTimerTemp(&tRecv);
 	
 	while (1)
 	{
 		if(WaitSysTime(&t_IMU_Update,2,UINT_MS))	//1ms进入一次
 		{
 			ReSetTimerTemp(&t_IMU_Update);
+			WaitSysTime(&t_IMU_Update,2,UINT_MS);
 			loopTimeIMU1=GetSystemTime()-loopTimeIMU2;
 			SensorThread();	//处理传感器数据
 			imuUpdate(0.002);	//2ms执行一次 500HZ
@@ -79,7 +79,7 @@ int main(void)
 		if(WaitSysTime(&tSendThread,50,UINT_MS))
 		{
 			ReSetTimerTemp(&tSendThread);
-			Sys_LED_Negative();	//系统灯取反
+			//Sys_LED_Negative();	//系统灯取反
 			
 			SendStatus();	//发送飞行器基本姿态给上位机
 			//SendSensor();	//发送传感器信息给上位机
@@ -94,6 +94,7 @@ int main(void)
 			RecvMessageThread();	//处理收到的数据
 		}
 	}
+	//_WFI();	//进入睡眠模式，任意中断可唤醒
 }
 
 void Error_Handler()
@@ -104,6 +105,7 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
   /** Initializes the CPU, AHB and APB busses clocks 
   */
@@ -128,6 +130,12 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_I2C1;
+  PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_HSI;	//配置IIC为内部8MHz时钟
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
   }

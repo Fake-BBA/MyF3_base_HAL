@@ -45,7 +45,7 @@ void Init_MPU6050()
 	* @param  Timeout Timeout duration
 	* @retval HAL status
 	*/
-	HAL_I2C_Mem_Write(&hi2c1,ADDR_MPU6050_Write,0x6A,I2C_MEMADD_SIZE_8BIT,MPU6050_Init1,3,100);
+	HAL_I2C_Mem_Write(&hi2c1,ADDR_MPU6050_Write,0x6A,I2C_MEMADD_SIZE_8BIT,MPU6050_Init1,2,100);
 	HAL_I2C_Mem_Write(&hi2c1,ADDR_MPU6050_Write,0x37,I2C_MEMADD_SIZE_8BIT,MPU6050_Init2,2,100);
 	HAL_I2C_Mem_Write(&hi2c1,ADDR_MPU6050_Write,0x23,I2C_MEMADD_SIZE_8BIT,MPU6050_Init3,1,100);	
 	HAL_I2C_Mem_Write(&hi2c1,ADDR_MPU6050_Write,0x19,I2C_MEMADD_SIZE_8BIT,MPU6050_Init4,4,100);
@@ -79,7 +79,7 @@ uint8 Read_MPU6050()
 extern uint32 loopTimeMPU1,loopTimeMPU2;
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	//loopTimeMPU1=GetSystemTime()-loopTimeMPU2;
+	loopTimeMPU1=GetSystemTime()-loopTimeMPU2;
 	Read_MPU6050();	//读取MPU6050数据到sensor结构体;
-	//loopTimeMPU2=GetSystemTime();
+	loopTimeMPU2=GetSystemTime();
 }
