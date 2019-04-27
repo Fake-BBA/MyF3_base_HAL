@@ -176,8 +176,8 @@ void processAccGyroMeasurements(struct Sensor *p_Sensor)
 	int16_t ax = p_Sensor->mpu6050.acc.x.data;
 	int16_t ay = p_Sensor->mpu6050.acc.y.data;
 	int16_t az = p_Sensor->mpu6050.acc.z.data;
-	int16_t gy = p_Sensor->mpu6050.gyro.x.data;
-	int16_t gx = p_Sensor->mpu6050.gyro.y.data;
+	int16_t gx = p_Sensor->mpu6050.gyro.x.data;
+	int16_t gy = p_Sensor->mpu6050.gyro.y.data;
 	int16_t gz = p_Sensor->mpu6050.gyro.z.data;
 
 	
@@ -199,12 +199,12 @@ void processAccGyroMeasurements(struct Sensor *p_Sensor)
 //	p_Sensor->mpu6050.acc.y.data=(ay)*accScale;
 //	p_Sensor->mpu6050.acc.z.data=(az)*accScale;
 	
-	p_Sensor->mpu6050.gyro.axisTFloat_DEG.axisTF.x = -(gx - gyroBias.x) * SENSORS_DEG_PER_LSB_CFG;	/*单位 °/s */
+	p_Sensor->mpu6050.gyro.axisTFloat_DEG.axisTF.x = (gx - gyroBias.x) * SENSORS_DEG_PER_LSB_CFG;	/*单位 °/s */
 	p_Sensor->mpu6050.gyro.axisTFloat_DEG.axisTF.y =  (gy - gyroBias.y) * SENSORS_DEG_PER_LSB_CFG;
 	p_Sensor->mpu6050.gyro.axisTFloat_DEG.axisTF.z =  (gz - gyroBias.z) * SENSORS_DEG_PER_LSB_CFG;
 	applyAxis3fLpf((lpf2pData*)(&gyroLpf), &p_Sensor->mpu6050.gyro.axisTFloat_DEG);
 
-	p_Sensor->mpu6050.acc.axisTFloat_G.axisTF.x = -(ax) * SENSORS_G_PER_LSB_CFG * accScale;	/*单位 g(9.8m/s^2)*/
+	p_Sensor->mpu6050.acc.axisTFloat_G.axisTF.x = (ax) * SENSORS_G_PER_LSB_CFG * accScale;	/*单位 g(9.8m/s^2)*/
 	p_Sensor->mpu6050.acc.axisTFloat_G.axisTF.y =  (ay) * SENSORS_G_PER_LSB_CFG * accScale;	/*重力加速度缩放因子accScale 根据样本计算得出*/
 	p_Sensor->mpu6050.acc.axisTFloat_G.axisTF.z =  (az) * SENSORS_G_PER_LSB_CFG * accScale;
 	applyAxis3fLpf((lpf2pData*)(&accLpf), &p_Sensor->mpu6050.acc.axisTFloat_G);
