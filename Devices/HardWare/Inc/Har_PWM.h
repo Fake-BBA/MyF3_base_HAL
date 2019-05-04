@@ -3,7 +3,14 @@
 
 #include "MyTypedef.h"
 
+//500HZ
 #define PWM_PERIOD	36000	//周期	
+
+//400HZ
+//#define PWM_PERIOD	45000	//周期
+
+#define MAX_PWM	PWM_PERIOD-200
+#define MIN_PWM		1000
 
 void Init_PWM();
 

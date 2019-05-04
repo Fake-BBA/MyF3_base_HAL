@@ -6,6 +6,7 @@
 #include "sensor.h"
 #include "Communication.h"
 #include "PID.h"
+#include "Dri_Motor.h"
 
 void SystemClock_Config(void);
 
@@ -46,9 +47,10 @@ int main(void)
 	Buzzer_Init();
 	MX_DMA_Init();
 	MX_I2C1_Init();
-	USART1_UART_Init(500000);
+	USART1_UART_Init(1000000);
 	Init_MPU6050();
-	Init_PWM();	//初始化PWM，包括引脚
+	Motor_Init();	//初始化电机
+	
 	//USART3_UART_Init();
 	
 	SensorInit();	//传感器初始化
@@ -74,14 +76,16 @@ int main(void)
 			loopTimeIMU2=GetSystemTime();
 		}
 		
+		Motor_Thread();	//电机控制线程
+		
 		//50ms进行一次发送
-		if(WaitSysTime(&tSendThread,50,UINT_MS))
+		if(WaitSysTime(&tSendThread,20,UINT_MS))
 		{
 			ReSetTimerTemp(&tSendThread);
-			//Sys_LED_Negative();	//系统灯取反
+			Sys_LED_Negative();	//系统灯取反
 			
 			SendStatus();	//发送飞行器基本姿态给上位机
-			SendSensor();	//发送传感器信息给上位机
+			//SendSensor();	//发送传感器信息给上位机
 			//SendLoopTime();
 			DMA_UART1_SendThread();	//启动DMA发送
 		}

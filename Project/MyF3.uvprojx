@@ -656,6 +656,16 @@
               <FileType>5</FileType>
               <FilePath>..\Devices\Drivers\Inc\Dri_SysTick.h</FilePath>
             </File>
+            <File>
+              <FileName>Dri_Motor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Devices\Drivers\Inc\Dri_Motor.h</FilePath>
+            </File>
+            <File>
+              <FileName>Dri_Motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Devices\Drivers\Src\Dri_Motor.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -825,6 +835,11 @@
               <FileName>PID.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\USER\Src\PID.c</FilePath>
+            </File>
+            <File>
+              <FileName>version.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\version.txt</FilePath>
             </File>
           </Files>
         </Group>

@@ -191,14 +191,6 @@ void processAccGyroMeasurements(struct Sensor *p_Sensor)
 			accBiasFound=processAccScale(ax, ay, az);	/*¼ÆËãaccScale*/ 
 	}
 	
-//	p_Sensor->mpu6050.gyro.x.data=(gx - gyroBias.x);
-//	p_Sensor->mpu6050.gyro.y.data=(gy - gyroBias.y);
-//	p_Sensor->mpu6050.gyro.z.data=(gz - gyroBias.z);
-//	
-//	p_Sensor->mpu6050.acc.x.data=(ax)*accScale;
-//	p_Sensor->mpu6050.acc.y.data=(ay)*accScale;
-//	p_Sensor->mpu6050.acc.z.data=(az)*accScale;
-	
 	p_Sensor->mpu6050.gyro.axisTFloat_DEG.axisTF.x = (gx - gyroBias.x) * SENSORS_DEG_PER_LSB_CFG;	/*µ¥Î» ¡ã/s */
 	p_Sensor->mpu6050.gyro.axisTFloat_DEG.axisTF.y =  (gy - gyroBias.y) * SENSORS_DEG_PER_LSB_CFG;
 	p_Sensor->mpu6050.gyro.axisTFloat_DEG.axisTF.z =  (gz - gyroBias.z) * SENSORS_DEG_PER_LSB_CFG;

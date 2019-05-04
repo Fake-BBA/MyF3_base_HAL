@@ -104,8 +104,9 @@ void imuUpdate(float dt)	/*数据融合 互补滤波*/
 	if (vecxZ<-1) vecxZ=-1;
 	
 	/*计算roll pitch yaw 欧拉角*/
-	flightState.attitude.pitch = -asinf(vecxZ) * RAD2DEG; 		//弧度转度
-	flightState.attitude.roll = atan2f(vecyZ, veczZ) * RAD2DEG;	//弧度转度
+	//由于飞控板安装时旋转了90度，所以pitch与roll调换，并且加了负号
+	flightState.attitude.pitch = -atan2f(vecyZ, veczZ) * RAD2DEG;	//弧度转度
+	flightState.attitude.roll = -asinf(vecxZ) * RAD2DEG; 		//弧度转度
 	flightState.attitude.yaw = atan2f(R21, R11) * RAD2DEG;		//弧度转度
 	
 	if (!isCalibrated)	/*校准*/
